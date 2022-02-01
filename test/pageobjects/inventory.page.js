@@ -10,6 +10,11 @@ class InventoryPage extends Page {
     get secondaryTitle() {
         return $('#header_container > div.header_secondary_container > span')
     }
+    // id Does not have # in front of it
+    InventoryItemById(id){
+        return $(`#${id}`)
+    }
+
 }
 
 module.exports = new InventoryPage();
