@@ -1,18 +1,11 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 
-describe('Sauce Demo', () => {
-    // Here for reference only
-    it.skip('should login with valid credentials', async () => {
-        await LoginPage.open();
+describe('UserStory: Checkout', () => {
 
-        await LoginPage.login('standard_user', 'secret_sauce');
-        await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
-    });
-
-    //TODO: Investigate: Running all the tests together is causing one test to fail
+    //TODO: Investigate: Running all the tests together is causing second test to fail
     //      Do I need to logout after one test?
-    it.skip('should be able to add one item to cart from inventory page', async()=> {
+    it.skip('TestCase_1: should be able to add one item to cart from inventory page', async()=> {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
         await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
@@ -26,9 +19,35 @@ describe('Sauce Demo', () => {
         const elRemoveItem = await $('#remove-sauce-labs-backpack')
 
         await expect(elRemoveItem).toExist();
+
+        // const elMenuButton = await $('#react-burger-menu-btn')
+        // await elMenuButton.click();
+        // await browser.pause(5000);
+        // const elLogoutLink = await $('#logout_sidebar_link')
+        // TODO: Getting: Request failed with status 400 element not interactable
+        // await elLogoutLink.click();
+
     })
 
-    it("should be able to add one item to cart and check it out successfully", async ()=>{
+    it.only("TestCase_2: should be able to add one item to cart and check it out successfully", async ()=>{
+        // Sequence:
+        // Login
+        // ADD TO CART
+        // Check for REMOVE button
+        // TODO: Check that cart has 1 item
+        // Click on Cart Icon
+        // Should go to checkout page
+        // Check URL of cart
+        // TODO: The cart should show 1 item
+        // Click on CHECKOUT button
+        // Confirm checkout page URL
+        // Enter FirstName, LastName, Postal Code
+        // Click on 'CONTINUE' button
+        // Make sure we are in second step of checkout
+        // TODO: - Check that the item in cart matches what we selected
+        // Click on 'FINISH' button
+        // Make sure you are on the final confirmation page
+ 
         // Login
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
@@ -61,8 +80,10 @@ describe('Sauce Demo', () => {
         // Check that url is that of cart.html
         expect(await browser.getUrl()).toHaveTextContaining("cart.html"); 
         
-        //TODO: Check that the cart has the right item in it
-        //      Need the name of the item
+        //TODO: Check that the cart has:
+        //      - the right item in it. Need the name of the item
+        //      - the right quantity
+        //      - the right price
         //TODO: Check that the cart has 1 item in it
 
         // Click on CHECKOUT button
@@ -87,7 +108,6 @@ describe('Sauce Demo', () => {
         // Ensure Values typed match what was typed
         // Hard coded for now
         // TODO: Input values are not validated
-        //    console.log (await elFirstName.getValue());
         await expect(elFirstName).toHaveValue("Jane", {ignoreCase: true});
         await expect(elLastName).toHaveValue("Doe", {ignoreCase: true});
         await expect(elPostalCode).toHaveValue("90210", {ignoreCase: true});
@@ -104,7 +124,7 @@ describe('Sauce Demo', () => {
         // TODO: Add a wait > 10 mins and check that you are logged out
 
         // TODO: Check that item in cart matches the description of the item we selected
-
+        // Click on FINISH button
         const elFinish = await $('[data-test="finish"]');
         await elFinish.click();
 
