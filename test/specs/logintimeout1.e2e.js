@@ -3,7 +3,7 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const delay = require ('delay');
 
 describe("Login Timeout", ()=>{
-    it("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{
+    it.skip("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{
         
         // https://www.npmjs.com/package/delay
 
@@ -14,7 +14,7 @@ describe("Login Timeout", ()=>{
         
         console.log(`LoginTimeout_1: Logged in with  user account at ${Date.now()}`);
     
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
     
         console.log("LoginTimeout_1: Added item to cart");
 

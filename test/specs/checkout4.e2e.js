@@ -20,7 +20,7 @@ describe('UserStory: Checkout', () => {
 
         console.log(`TestCase_4: Logged in`)
  
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
 
         console.log("TestCase_4: Added item to cart");
 

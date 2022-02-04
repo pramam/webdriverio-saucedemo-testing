@@ -21,9 +21,9 @@ describe('UserStory: Checkout', () => {
 
         console.log(`TestCase_3: Logged in`)
  
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
 
         console.log("TestCase_3: Added 3 items to cart");
 
@@ -40,7 +40,7 @@ describe('UserStory: Checkout', () => {
 
         await InventoryPage.ensureOnPage();
 
-        await InventoryPage.removeItemFromCart('#remove-sauce-labs-bolt-t-shirt');
+        await CartPage.removeItemFromCart('#remove-sauce-labs-bolt-t-shirt');
         console.log("TestCase_3: Removed 1 item from cart");
 
         await CartPage.checkNumCartItems(2);

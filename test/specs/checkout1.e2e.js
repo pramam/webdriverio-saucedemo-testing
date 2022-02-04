@@ -1,5 +1,6 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
+const CartPage = require('../pageobjects/cart.page');
 
 describe('UserStory: Checkout', () => {
 
@@ -15,11 +16,11 @@ describe('UserStory: Checkout', () => {
 
         console.log(`TestCase_1: Logged in`)
  
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
 
         console.log("TestCase_1: Added item to cart");
 
-        await InventoryPage.removeItemFromCart("#remove-sauce-labs-backpack");
+        await CartPage.removeItemFromCart("#remove-sauce-labs-backpack");
         
         console.log("TestCase_1: Removed item successfully")
         // const elMenuButton = await $('#react-burger-menu-btn')

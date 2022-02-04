@@ -74,6 +74,27 @@ const Page = require ('./page');
         const elContinue = await $('#continue-shopping')
         await elContinue.click();
     }
+    // This can only be done from InventoryPage, but it looks like CartPage is a better
+    // home for it, so cart state can be maintained here if necessary
+    // id_name starts with '#'
+    async addItemToCart(id_name){
+        // TODO: Use data-test id's; More robust
+        // Add a product to cart by clicking ADD TO CART button next to the item
+        const elItem1 = await $(id_name)
+
+        // TODO: Get name of this item and store it for later
+        // const elItem1Name = await elItem1.previousElement();
+        // await elItem1Name.toHaveElementClassContaining('inventory_item_label');
+
+        await elItem1.click();
+
+    }
+    // id_name starts with #
+    // This can be called from InventoryPage or from CartPage
+    async removeItemFromCart(id_name){
+        const elRemoveItem = await $(id_name)
+        await elRemoveItem.click();
+    }
 }
 
 module.exports = new CartPage();

@@ -16,8 +16,8 @@ describe('UserStory: Reset Cart State', () => {
 
         console.log(`Reset_1: Logged in`)
  
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
         console.log("Reset_1: Added 2 items to cart");
  
         // This is done on Inventory page
