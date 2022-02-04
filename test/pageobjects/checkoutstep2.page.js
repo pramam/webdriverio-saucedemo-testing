@@ -21,6 +21,10 @@ class CheckoutStep2Page extends Page {
         console.log("TODO: To implement CheckoutStep2Page.clickOnCancel2");
 
     }
+    async checkItemsOnCheckoutStep2PageMatchCart(){
+        // Should not allow CheckoutStep2 if 0 items in cart
+        console.log("TODO: To implement CheckoutStep2Page.checkItemsOnPageCheckOutStep2PageMatchCart");
+    }
 }
 
 module.exports = new CheckoutStep2Page();

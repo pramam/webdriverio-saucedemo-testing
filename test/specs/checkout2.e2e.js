@@ -71,10 +71,6 @@ describe('UserStory: Checkout', () => {
         // TODO: Should be able to logout
     })
 
-    // Other Tests to write:
-    // Not specifying FirstName/Last Name/ZipCode on checkout should fail the checkout
-    // should be able to add more than one item to cart from inventory page
-    // should not be able to checkout with problem_user
 });
 
 

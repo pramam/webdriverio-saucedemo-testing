@@ -43,7 +43,7 @@ class LoginPage extends Page {
         await browser.pause(5000);
         await elLogoutLink.click();
     }
-    
+
     async resetAppState(){
         const elMenuButton = await $('#react-burger-menu-btn')
         
@@ -86,12 +86,14 @@ class LoginPage extends Page {
         await elLogoutLink.click();
 
     }
-    async checkIfOnErroredLogoutPage(){
+    async checkIfOnErroredLogoutPage(){        
+        const url = await browser.getUrl();
+
+        if (url !== "https://www.saucedemo.com")
+            throw Error(`Login.checkIfOnErroredLogout: Not on correct page, current page is ${url}`);
+        
         const myElem = await $('[data-test="error"]')
         await myElem.waitForDisplayed({ timeout: 3000 });
-
-        if (await browser.getUrl() !== "https://www.saucedemo.com")
-            throw Error("Login.checkIfOnErroredLogout: Not on correct page")
     }
 }
 

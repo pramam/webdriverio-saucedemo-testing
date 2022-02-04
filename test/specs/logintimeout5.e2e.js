@@ -19,8 +19,9 @@ describe("Login Timeout", ()=>{
         console.log("TestCase_5: Added item to cart");
 
         // wait 10 mins + a bit
-        await delay(10 * 60 * 1000 +1000)
+        await delay(10 * 60 * 1000 +5000)
 
+        // await browser.debug();
         // check if You see the logout error
         await LoginPage.checkIfOnErroredLogoutPage();
 

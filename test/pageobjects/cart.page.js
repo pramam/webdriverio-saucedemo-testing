@@ -54,7 +54,18 @@ const Page = require ('./page');
             return false;
         }
     }
+    async checkItemsOnCartPageMatchCart(){
+        // TODO: Where should added cart items be stored? In CartPage or in InventoryPage?
+        console.log("TODO: To implement CartPage.checkItemsOnCartPageMatchCart");
+    }
+
     async clickOnCheckout(){
+        //TODO: Check that the cart has:
+        //      - the right item in it. Need the name of the item
+        //      - the right quantity
+        //      - the right price
+        // Should I store state in CartPage and double check it at each step?
+
         // Click on CHECKOUT button
         const elCheckout = await $('#checkout')
         await elCheckout.click();
