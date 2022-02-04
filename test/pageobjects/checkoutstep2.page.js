@@ -18,8 +18,8 @@ class CheckoutStep2Page extends Page {
 
     }
     async clickOnCancel2(){
-        console.log("TODO: To implement CheckoutStep2Page.clickOnCancel2");
-
+        const elCancel2 = await $('[data-test="cancel"]');
+        await elCancel2.click();
     }
     async checkItemsOnCheckoutStep2PageMatchCart(){
         // Should not allow CheckoutStep2 if 0 items in cart
