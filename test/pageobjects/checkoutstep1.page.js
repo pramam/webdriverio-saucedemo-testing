@@ -26,6 +26,11 @@ class CheckoutStep1Page extends Page {
         await expect(elLastName).toHaveValue(last_name); //, {ignoreCase: true});
         await expect(elPostalCode).toHaveValue(postal_code); //, {ignoreCase: true});
     }
+    async validateCustomerSeesError(){
+        const elError = await $('[data-test="error"]');
+        // TODO: Is it safe to specify timeout in code?
+        await elError.waitForDisplayed({timeout: 600});
+    }
     async clickOnContinue(){
         const elContinue = await $('input[type="submit"]');
         await elContinue.click();
