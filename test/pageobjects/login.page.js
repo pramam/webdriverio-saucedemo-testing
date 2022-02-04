@@ -80,6 +80,13 @@ class LoginPage extends Page {
         await elLogoutLink.click();
 
     }
+    async checkIfOnErroredLogoutPage(){
+        const myElem = await $('[data-test="error"]')
+        await myElem.waitForDisplayed({ timeout: 3000 });
+
+        if (await browser.getUrl() !== "https://www.saucedemo.com")
+            throw Error("Login.checkIfOnErroredLogout: Not on correct page")
+    }
 }
 
 module.exports = new LoginPage();
