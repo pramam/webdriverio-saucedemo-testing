@@ -12,6 +12,7 @@ describe('UserStory: Checkout', () => {
 
 
     // State machine info:
+    // Testing states 8, 13: CheckoutStep1->CartIcon->CartPage, CheckoutComplete->BackHome->InventoryPage
     // X 1 A 2 2 2 2 2 4 B 6 C [don't fill customer info] 8 B 3 B 6 C 9 D 12 E 13 A
     it("TestCase_5: Add 5 items to cart, got to CheckoutStep1, don't fill in customer info, go Back to Cart, Remove an item, continue to checkout, go Back Home", async ()=>{ 
         await LoginPage.open();
