@@ -1,5 +1,9 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
+const CartPage = require('../pageobjects/cart.page');
+const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
+const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
+const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 
 describe('UserStory: Checkout', () => {
 
@@ -57,91 +61,124 @@ describe('UserStory: Checkout', () => {
         // Login
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
-        await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
+        // await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
+
+        await InventoryPage.ensureOnPage();
 
         console.log(`TestCase_2: Logged in`)
-        // TODO: Use data-test id's; More robust
-        // Add a product to cart by clicking ADD TO CART
-        const elItem1 = await $('#add-to-cart-sauce-labs-backpack')
+        // // TODO: Use data-test id's; More robust
+        // // Add a product to cart by clicking ADD TO CART
+        // const elItem1 = await $('#add-to-cart-sauce-labs-backpack')
 
-        // TODO: Get name of this item and store it for later
-        // const elItem1Name = await elItem1.previousElement();
-        // await elItem1Name.toHaveElementClassContaining('inventory_item_label');
+        // // TODO: Get name of this item and store it for later
+        // // const elItem1Name = await elItem1.previousElement();
+        // // await elItem1Name.toHaveElementClassContaining('inventory_item_label');
 
-        await elItem1.click();
+        // await elItem1.click();
+        await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+
         // await browser.pause(5000);
         console.log("TestCase_2: Added item to cart");
 
-        // Ensure that it shows as added by checking for REMOVE button
-        const elRemoveItem = await $('#remove-sauce-labs-backpack')
-        await browser.pause(5000);
-        await expect(elRemoveItem).toExist();
-        await expect(elRemoveItem).toBeClickable();
+        // // Ensure that it shows as added by checking for REMOVE button
+        // const elRemoveItem = await $('#remove-sauce-labs-backpack')
+        // await browser.pause(5000);
+        // await expect(elRemoveItem).toExist();
+        // await expect(elRemoveItem).toBeClickable();
 
-        // Clicking on cart icon should take you to checkout page
-        const elCartIcon = await $('#shopping_cart_container')
+        // // Clicking on cart icon should take you to checkout page
+        // const elCartIcon = await $('#shopping_cart_container')
         
-        // TODO: P1: The cart should show 1 item on the icon
+        // // TODO: P1: The cart should show 1 item on the icon
                 
-        await elCartIcon.click();
+        // await elCartIcon.click();
         
-        // Check that url is that of cart.html
-        expect(await browser.getUrl()).toHaveTextContaining("cart.html"); 
-        
+        // TODO: Check num items in cart
+        await CartPage.checkNumCartItems(1);
+        await CartPage.clickOnCartIcon();
+
+        // // Check that url is that of cart.html
+        // expect(await browser.getUrl()).toHaveTextContaining("cart.html"); 
+
+        await CartPage.ensureOnPage();
+        await CartPage.checkNumCartItems(1);
+        console.log("TestCase_2: Checked 1 item in cart, clicked on Cart Icon,ensured On CartPage");
         //TODO: Check that the cart has:
         //      - the right item in it. Need the name of the item
         //      - the right quantity
         //      - the right price
         //TODO: Check that the cart has 1 item in it
 
-        // Click on CHECKOUT button
-        const elCheckout = await $('#checkout')
-        await elCheckout.click();
+        // // Click on CHECKOUT button
+        // const elCheckout = await $('#checkout')
+        // await elCheckout.click();
 
-        // Ensure that the checkout url is correct
-        // https://www.saucedemo.com/checkout-step-one.html
-        expect(await browser.getUrl()).toHaveTextContaining("checkout-step-one.html"); 
-
-        // Enter FirstName, LastName,PostalCode
-        // TODO: Parameterize
-        const elFirstName = await $('input[data-test="firstName"]');
-        const elLastName = await $('input[data-test="lastName"]');
-        const elPostalCode = await $('input[data-test="postalCode"]');
-
-        // TODO: Try checkout before entering all values, should fail
-        await elFirstName.setValue("Jane");
-        await elLastName.setValue("Doe");
-        await elPostalCode.setValue("90210");
-
-        // Ensure Values typed match what was typed
-        // Hard coded for now
-        // TODO: Input values are not validated
-        await expect(elFirstName).toHaveValue("Jane", {ignoreCase: true});
-        await expect(elLastName).toHaveValue("Doe", {ignoreCase: true});
-        await expect(elPostalCode).toHaveValue("90210", {ignoreCase: true});
+        await CartPage.clickOnCheckout();
+        console.log("TestCase_2: Clicked on Checkout from CartPage");
         
-        // Click on the CONTINUE button
-        const elContinue = await $('input[type="submit"]');
-        await elContinue.click();
+        // // Ensure that the checkout url is correct
+        // // https://www.saucedemo.com/checkout-step-one.html
+        // expect(await browser.getUrl()).toHaveTextContaining("checkout-step-one.html"); 
 
-        // Get to second step of checkout
-        // Ensure that the second step of checkout url is correct
-        // https://www.saucedemo.com/checkout-step-two.html
-        expect(await browser.getUrl()).toHaveTextContaining("checkout-step-two.html"); 
+        await CheckoutStep1Page.ensureOnPage();
+        console.log("TestCase_2: Ensured on CheckoutStep1Page");
+        
+        // // Enter FirstName, LastName,PostalCode
+        // // TODO: Parameterize
+        // const elFirstName = await $('input[data-test="firstName"]');
+        // const elLastName = await $('input[data-test="lastName"]');
+        // const elPostalCode = await $('input[data-test="postalCode"]');
+
+        // // TODO: Try checkout before entering all values, should fail
+        // await elFirstName.setValue("Jane");
+        // await elLastName.setValue("Doe");
+        // await elPostalCode.setValue("90210");
+
+        // // Ensure Values typed match what was typed
+        // // Hard coded for now
+        // // TODO: Input values are not validated
+        // await expect(elFirstName).toHaveValue("Jane", {ignoreCase: true});
+        // await expect(elLastName).toHaveValue("Doe", {ignoreCase: true});
+        // await expect(elPostalCode).toHaveValue("90210", {ignoreCase: true});
+        // This ensures that the values typed show up on screen
+        await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
+        console.log("TestCase_2: CheckoutStep1Page: Filled in customer info");
+        
+        // // Click on the CONTINUE button
+        // const elContinue = await $('input[type="submit"]');
+        // await elContinue.click();
+
+        await CheckoutStep1Page.clickOnContinue();
+        console.log("TestCase_2: CheckoutStep1Page: Clicked on Continue");    
+        
+        
+        // // Get to second step of checkout
+        // // Ensure that the second step of checkout url is correct
+        // // https://www.saucedemo.com/checkout-step-two.html
+        // expect(await browser.getUrl()).toHaveTextContaining("checkout-step-two.html"); 
     
+        await CheckoutStep2Page.ensureOnPage();
+        console.log("TestCase_2: CheckoutStep2Page: ensure on page");    
+       
         // TODO: Add a wait > 10 mins and check that you are logged out
 
         // TODO: Check that item in cart matches the description of the item we selected
-        // Click on FINISH button
-        const elFinish = await $('[data-test="finish"]');
-        await elFinish.click();
+        // // Click on FINISH button
+        // const elFinish = await $('[data-test="finish"]');
+        // await elFinish.click();
 
-        // Check url is checkout complete
-        // https://www.saucedemo.com/checkout-complete.html
-        expect(await browser.getUrl()).toHaveTextContaining("checkout-complete.html"); 
+        await CheckoutStep2Page.clickOnFinish();
+        console.log("TestCase_2: CheckoutStep2Page: Clicked on Finish");    
+        
+        // // Check url is checkout complete
+        // // https://www.saucedemo.com/checkout-complete.html
+        // expect(await browser.getUrl()).toHaveTextContaining("checkout-complete.html"); 
  
-        const elHeaderOnCheckout = await $("h2")
-        await expect(elHeaderOnCheckout).toHaveText("THANK YOU FOR YOUR ORDER");
+        await CheckoutCompletePage.ensureOnPage();
+        console.log("TestCase_2: CheckoutCompletePage: ensureOnPage"); 
+        
+        // const elHeaderOnCheckout = await $("h2")
+        // await expect(elHeaderOnCheckout).toHaveText("THANK YOU FOR YOUR ORDER");
 
 
         // This is just to see it visually in action
