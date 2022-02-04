@@ -14,6 +14,9 @@ class CheckoutCompletePage extends Page {
         if (await elHeaderOnCheckout.getText() !== "THANK YOU FOR YOUR ORDER")
             throw Error ("CheckoutCompletePage.ensureOnPage: Did not find text THANK YOU FOR YOUR ORDER")
     }
+    async clickOnBackHome(){
+        console.log("CheckoutCompletePage: To implement clickOnBackHome");
+    }
 }
 
 module.exports = new CheckoutCompletePage();

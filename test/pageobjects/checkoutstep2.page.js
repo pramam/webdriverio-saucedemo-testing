@@ -17,6 +17,10 @@ class CheckoutStep2Page extends Page {
         await elFinish.click();
 
     }
+    async clickOnCancel2(){
+        console.log("TODO: To implement CheckoutStep2Page.clickOnCancel2");
+
+    }
 }
 
 module.exports = new CheckoutStep2Page();
