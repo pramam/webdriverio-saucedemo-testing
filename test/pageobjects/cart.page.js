@@ -45,6 +45,10 @@ const Page = require ('./page');
         const elCheckout = await $('#checkout')
         await elCheckout.click();
     }
+    async clickOnContinueShopping(){
+        const elContinue = await $('#continue-shopping')
+        await elContinue.click();
+    }
 }
 
 module.exports = new CartPage();

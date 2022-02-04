@@ -6,8 +6,10 @@ const Page = require('./page');
 class CheckoutStep2Page extends Page {
 
     async ensureOnPage(){
-        if (await browser.getUrl() !== "https://www.saucedemo.com/checkout-step-two.html")
-            throw Error("CheckoutStep2Page.ensureOnPage: Not on correct page")
+        let url = await browser.getUrl();
+
+        if (url !== "https://www.saucedemo.com/checkout-step-two.html")
+            throw Error(`CheckoutStep2Page.ensureOnPage: Not on correct page on page ${url}`)
     }
     async clickOnFinish(){
         // Click on FINISH button

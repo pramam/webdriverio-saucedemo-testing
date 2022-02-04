@@ -30,6 +30,10 @@ class CheckoutStep1Page extends Page {
         const elContinue = await $('input[type="submit"]');
         await elContinue.click();
     }
+    async clickOnCancel1(){
+        const elCancel1 = await $('#cancel');
+        await elCancel1.click();
+    }
 }
 
 module.exports = new CheckoutStep1Page();
