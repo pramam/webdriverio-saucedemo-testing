@@ -66,7 +66,7 @@ describe('UserStory: Checkout', () => {
          
         await CheckoutCompletePage.ensureOnPage();
         console.log("TestCase_2: CheckoutCompletePage: ensureOnPage"); 
-        await CartPage.checkCartIsEmpty();
+        await CartPage.checkNumCartItems(0);
         
         // TODO: Should be able to logout
     })

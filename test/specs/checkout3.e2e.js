@@ -84,7 +84,7 @@ describe('UserStory: Checkout', () => {
 
         await CheckoutCompletePage.ensureOnPage();
         console.log("TestCase_3: CheckoutCompletePage: ensureOnPage"); 
-        await CartPage.checkCartIsEmpty();
+        await CartPage.checkNumCartItems(0);
 
         return;
         // Checking count again on next page.
