@@ -10,10 +10,6 @@ class InventoryPage extends Page {
     get secondaryTitle() {
         return $('#header_container > div.header_secondary_container > span')
     }
-    // // id Does not have # in front of it
-    // InventoryItemById(id){
-    //     return $(`#${id}`)
-    // }
 
     async ensureOnPage(){
         if (await browser.getUrl() !== "https://www.saucedemo.com/inventory.html")
@@ -23,7 +19,7 @@ class InventoryPage extends Page {
     // id_name starts with '#'
     async addItemToCart(id_name){
         // TODO: Use data-test id's; More robust
-        // Add a product to cart by clicking ADD TO CART
+        // Add a product to cart by clicking ADD TO CART button next to the item
         const elItem1 = await $(id_name)
 
         // TODO: Get name of this item and store it for later
@@ -36,11 +32,7 @@ class InventoryPage extends Page {
     // id_name starts with #
     async removeItemFromCart(id_name){
         const elRemoveItem = await $(id_name)
-        // await browser.pause(5000);
-        // await expect(elRemoveItem).toExist();
-        // await expect(elRemoveItem).toBeClickable();
         await elRemoveItem.click();
-
     }
 }
 

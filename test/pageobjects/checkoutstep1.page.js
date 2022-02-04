@@ -12,7 +12,6 @@ class CheckoutStep1Page extends Page {
 
     async fillInCustomerInfo(first_name, last_name, postal_code){
         // Enter FirstName, LastName,PostalCode
-        // TODO: Parameterize
         const elFirstName = await $('input[data-test="firstName"]');
         const elLastName = await $('input[data-test="lastName"]');
         const elPostalCode = await $('input[data-test="postalCode"]');
@@ -23,14 +22,11 @@ class CheckoutStep1Page extends Page {
         await elPostalCode.setValue(postal_code);
 
         // Ensure Values typed match what was typed
-        // Hard coded for now
-        // TODO: Input values are not validated
         await expect(elFirstName).toHaveValue(first_name) ; //, {ignoreCase: true});
         await expect(elLastName).toHaveValue(last_name); //, {ignoreCase: true});
         await expect(elPostalCode).toHaveValue(postal_code); //, {ignoreCase: true});
     }
     async clickOnContinue(){
-        // Click on the CONTINUE button
         const elContinue = await $('input[type="submit"]');
         await elContinue.click();
     }
