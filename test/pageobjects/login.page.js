@@ -35,6 +35,51 @@ class LoginPage extends Page {
     open() {
         return super.open('');
     }
+
+    async logout(){
+        const elMenuButton = await $('#react-burger-menu-btn')
+        await elMenuButton.click();
+        const elLogoutLink = await $('#logout_sidebar_link')
+        await browser.pause(5000);
+        await elLogoutLink.click();
+    }
+    async resetAppState(){
+        // const elMenuButton = await $('#react-burger-menu-btn')
+        
+        // await elMenuButton.click();
+        const elMenu = await $('.bm-menu');
+
+        expect(elMenu).toBeDisplayed();
+
+        
+        const elResetLink = await $('#reset_sidebar_link')
+        await browser.pause(5000);
+        await elResetLink.waitForClickable({ timeout: 5000 });
+        await elResetLink.click();
+
+    }
+
+    async resetAppStateAndLogout(){
+        // const elMenuButton = await $('#react-burger-menu-btn')
+        
+        // await elMenuButton.click();
+        const elMenu = await $('.bm-menu');
+        await elMenu.scrollIntoView();
+        expect(elMenu).toBeDisplayed();
+
+        
+        const elResetLink = await $('#reset_sidebar_link')
+        
+        await browser.pause(5000);
+        await elResetLink.waitForClickable({ timeout: 5000 });
+        await elResetLink.click();
+
+        
+        const elLogoutLink = await $('#logout_sidebar_link')
+        await browser.pause(5000);
+        await elLogoutLink.click();
+
+    }
 }
 
 module.exports = new LoginPage();
