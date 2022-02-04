@@ -22,12 +22,24 @@ const Page = require ('./page');
         const elCount = await $('.shopping_cart_badge');
         const count = await elCount.getText();
 
-
         if (count != num)
             throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
         console.log(`CartPage: Cart has ${count} items`)
     }
-    
+
+    async checkCartIsEmpty(){
+                // TODO: checkCartIsEmpty
+        // if (count === ""){
+        //     if (num != 0)
+        //         throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
+        //     else{
+        //         console.log(`CartPage: Cart has no items`)
+        //         return;
+        //     }
+        // } 
+        console.log("TODO: CartPage: To implement checkCartIsEmpty")
+
+    }
     async clickOnCheckout(){
         // Click on CHECKOUT button
         const elCheckout = await $('#checkout')

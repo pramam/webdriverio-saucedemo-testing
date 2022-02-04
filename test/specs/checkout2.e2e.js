@@ -42,7 +42,9 @@ describe('UserStory: Checkout', () => {
         
         await CheckoutStep1Page.ensureOnPage();
         console.log("TestCase_2: Ensured on CheckoutStep1Page");
-        
+ 
+        await CartPage.checkNumCartItems(1);
+ 
         await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
         console.log("TestCase_2: CheckoutStep1Page: Filled in customer info");
         
@@ -55,12 +57,14 @@ describe('UserStory: Checkout', () => {
         // TODO: Add a wait > 10 mins and check that you are logged out
 
         // TODO: Check that item in cart matches the description of the item we selected
-
+        await CartPage.checkNumCartItems(1);
+ 
         await CheckoutStep2Page.clickOnFinish();
         console.log("TestCase_2: CheckoutStep2Page: Clicked on Finish");    
          
         await CheckoutCompletePage.ensureOnPage();
         console.log("TestCase_2: CheckoutCompletePage: ensureOnPage"); 
+        await CartPage.checkCartIsEmpty();
         
         // TODO: Should be able to logout
     })
