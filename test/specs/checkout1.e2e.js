@@ -8,7 +8,6 @@ describe('UserStory: Checkout', () => {
     it('TestCase_1: should be able to add one item to cart and remove it from inventory page', async()=> {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
-        // await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
 
         await InventoryPage.ensureOnPage();
 
@@ -20,11 +19,6 @@ describe('UserStory: Checkout', () => {
 
         await InventoryPage.removeItemFromCart("#remove-sauce-labs-backpack");
         
-        // const elRemoveItem = await $('#remove-sauce-labs-backpack')
-
-        // await expect(elRemoveItem).toExist();
-        // await expect(elRemoveItem).toBeClickable();
-        // await elRemoveItem.click();
         console.log("TestCase_1: Removed item successfully")
         // const elMenuButton = await $('#react-burger-menu-btn')
         // await elMenuButton.click();
