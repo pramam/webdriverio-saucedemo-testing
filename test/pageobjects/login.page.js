@@ -43,20 +43,26 @@ class LoginPage extends Page {
         await browser.pause(5000);
         await elLogoutLink.click();
     }
+    
     async resetAppState(){
-        // const elMenuButton = await $('#react-burger-menu-btn')
+        const elMenuButton = await $('#react-burger-menu-btn')
         
-        // await elMenuButton.click();
-        const elMenu = await $('.bm-menu');
+        await elMenuButton.click();
 
-        expect(elMenu).toBeDisplayed();
+        console.log(`LoginPage.resetAppState, clicked on MenuButton`);
 
-        
+        // Wait for the modal to slide in for display
+        await browser.pause(500);
         const elResetLink = await $('#reset_sidebar_link')
-        await browser.pause(5000);
         await elResetLink.waitForClickable({ timeout: 5000 });
+        
         await elResetLink.click();
+        console.log(`LoginPage.resetAppState, clicked on reset link`);
 
+        const elCloseMenuButton = await $('#react-burger-cross-btn');
+ 
+        await elCloseMenuButton.click();
+        console.log(`LoginPage.resetAppState, clicked on close menu button`);
     }
 
     async resetAppStateAndLogout(){

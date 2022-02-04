@@ -19,26 +19,40 @@ const Page = require ('./page');
     }
 
     async checkNumCartItems(num){
+        
+        if (this.#checkCartIsEmpty() && num === 0){
+            // console.log(`CartPage.checkNumCartItems returning true for 0 items`)
+            return true;
+        }
+        // num is not 0
         const elCount = await $('.shopping_cart_badge');
-        const count = await elCount.getText();
+        
+        await browser.pause(500); // so that elCount can show up if it exists
 
+        let count = await elCount.getText();
+        // console.log(`CartPage.checkNumCartItems count is ${count}`);
+            
         if (count != num)
             throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
         console.log(`CartPage: Cart has ${count} items`)
     }
 
-    async checkCartIsEmpty(){
-                // TODO: checkCartIsEmpty
-        // if (count === ""){
-        //     if (num != 0)
-        //         throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
-        //     else{
-        //         console.log(`CartPage: Cart has no items`)
-        //         return;
-        //     }
-        // } 
-        console.log("TODO: CartPage: To implement checkCartIsEmpty")
+    async #checkCartIsEmpty(){
+        const elCount = await $('.shopping_cart_badge');
+        
+        await browser.pause(500); // so that elCount can show up if it exists
 
+        // console.log(`Cart.checkCartIsEmpty: In method`)
+        // If the badge doesn't exist then the cart is empty
+        if (await elCount.waitForExist({reverse: true, timeout: 500})){
+            // elCount does not exist
+            // console.log(`CartPage.checkCartIsEmpty waitForExist returned true, cart has no items`)
+            return true;
+        }
+        else{
+            // console.log(`CartPage.checkCartIsEmpty: cart not empty`)
+            return false;
+        }
     }
     async clickOnCheckout(){
         // Click on CHECKOUT button
