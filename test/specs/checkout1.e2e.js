@@ -8,7 +8,7 @@ describe('UserStory: Checkout', () => {
     //      Do I need to logout after one test?
     // State machine info:
     // X 1 A 2 3
-    it('TestCase_1: should be able to add one item to cart and remove it from inventory page', async()=> {
+    it('TestCase_1: should be able to add one item to cart and remove it, add it again from inventory page', async()=> {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
 
@@ -17,12 +17,16 @@ describe('UserStory: Checkout', () => {
         console.log(`TestCase_1: Logged in`)
  
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-
+        await CartPage.checkNumCartItems(1);
         console.log("TestCase_1: Added item to cart");
 
         await CartPage.removeItemFromCart("#remove-sauce-labs-backpack");
-        
-        console.log("TestCase_1: Removed item successfully")
+        await CartPage.checkNumCartItems(0);
+        console.log("TestCase_1: Removed item successfully");
+
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.checkNumCartItems(1);
+        console.log("TestCase_1: Added removed item to cart again");
         // const elMenuButton = await $('#react-burger-menu-btn')
         // await elMenuButton.click();
         // await browser.pause(5000);
