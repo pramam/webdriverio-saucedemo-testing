@@ -5,6 +5,8 @@ describe('UserStory: Checkout', () => {
 
     //TODO: Investigate: Running all the tests together is causing second test to fail
     //      Do I need to logout after one test?
+    // State machine info:
+    // X 1 A 2 3
     it('TestCase_1: should be able to add one item to cart and remove it from inventory page', async()=> {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');

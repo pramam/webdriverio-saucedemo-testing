@@ -11,6 +11,8 @@ describe('UserStory: Checkout', () => {
     //      Do I need to logout after one test?
 
 
+    // State machine info:
+    // X 1 A 2 4 B 6 C 9 D 12 E
     it("TestCase_2: should be able to add one item to cart and check it out successfully", async ()=>{ 
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');
