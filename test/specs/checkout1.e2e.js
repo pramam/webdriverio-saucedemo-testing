@@ -1,6 +1,7 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
+const LoginData = require('../../data/logindata');
 
 describe('UserStory: Checkout', () => {
 
@@ -10,7 +11,7 @@ describe('UserStory: Checkout', () => {
     // X 1 A 2 3
     it('TestCase_1: should be able to add one item to cart and remove it, add it again from inventory page', async()=> {
         await LoginPage.open();
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await LoginPage.login(LoginData.userName, LoginData.password);
 
         await InventoryPage.ensureOnPage();
 

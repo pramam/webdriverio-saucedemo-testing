@@ -1,6 +1,7 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
+const LoginData = require('../../data/logindata');
 
 describe("UserStory: Reset Cart State", ()=>{
 
@@ -8,7 +9,7 @@ describe("UserStory: Reset Cart State", ()=>{
     // X 1 A 2 2 4 B 15 B
     it('Reset_2: should be able to add two items to cart and zero it out by Reset App State from burger menu on the Cart Page', async()=> {
         await LoginPage.open();
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await LoginPage.login(LoginData.userName, LoginData.password);
 
         await InventoryPage.ensureOnPage();
 

@@ -1,6 +1,7 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const delay = require ('delay');
+const LoginData = require('../../data/logindata');
 
 describe("Login Timeout", ()=>{
     it("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{
@@ -9,7 +10,7 @@ describe("Login Timeout", ()=>{
 
         await LoginPage.open();
 
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await LoginPage.login(LoginData.userName, LoginData.password);
         await InventoryPage.ensureOnPage();
         
         console.log(`LoginTimeout_1: Logged in with  user account at ${Date.now()}`);

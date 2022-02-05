@@ -4,6 +4,7 @@ const CartPage = require('../pageobjects/cart.page');
 const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
+const LoginData = require('../../data/logindata');
 
 describe('UserStory: Checkout', () => {
 
@@ -15,7 +16,7 @@ describe('UserStory: Checkout', () => {
     // X 1 A 2 2 2 4 B 5 A 3 4 B 6 C 7 B 6 C 9 D 12
     it("TestCase_3: Add multiple items to cart, Continue shopping from cart, Cancel from Checkout1, to successful checkout", async ()=>{ 
         await LoginPage.open();
-        await LoginPage.login('standard_user', 'secret_sauce');
+        await LoginPage.login(LoginData.userName, LoginData.password);
  
         await InventoryPage.ensureOnPage();
 
