@@ -1,5 +1,6 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
+const CartPage = require('../pageobjects/cart.page');
 const delay = require ('delay');
 const LoginData = require('../../data/logindata');
 
