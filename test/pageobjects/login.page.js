@@ -27,6 +27,7 @@ class LoginPage extends Page {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
+        console.log(`LoginPage.login, clicked on LOGIN`);
     }
 
     /**
@@ -39,9 +40,16 @@ class LoginPage extends Page {
     async logout(){
         const elMenuButton = await $('#react-burger-menu-btn')
         await elMenuButton.click();
+        console.log(`LoginPage.logout, clicked on MenuButton`);
+
+        // Wait for the modal to slide in for display
+        await browser.pause(500);
+
         const elLogoutLink = await $('#logout_sidebar_link')
-        await browser.pause(5000);
+        await elLogoutLink.waitForClickable({ timeout: 5000 });
+        
         await elLogoutLink.click();
+        console.log(`LoginPage.logout, clicked on logout link`);
     }
 
     async resetAppState(){
