@@ -43,7 +43,7 @@ class LoginPage extends Page {
         console.log(`LoginPage.logout, clicked on MenuButton`);
 
         // Wait for the modal to slide in for display
-        await browser.pause(500);
+        await browser.pause(5000);
 
         const elLogoutLink = await $('#logout_sidebar_link')
         await elLogoutLink.waitForClickable({ timeout: 5000 });
