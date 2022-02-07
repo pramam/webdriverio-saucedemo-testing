@@ -16,11 +16,6 @@ describe('Sauce Demo', () => {
         await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
 
         await LoginPage.logout();
-        // const elMenuButton = await $('#react-burger-menu-btn')
-        // await elMenuButton.click();
-        // await browser.pause(5000);
-        // const elLogoutLink = await $('#logout_sidebar_link')
-        // await elLogoutLink.click();
     });
 });
 

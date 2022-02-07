@@ -19,10 +19,5 @@ describe("Login-Logout", ()=>{
         await InventoryPage.ensureOnPage();
         console.log(`Login_3: Logged in again successfully`);
         
-        // const elMenuButton = await $('#react-burger-menu-btn')
-        // await elMenuButton.click();
-        // await browser.pause(5000);
-        // const elLogoutLink = await $('#logout_sidebar_link')
-        // await elLogoutLink.click();
     });
 })
