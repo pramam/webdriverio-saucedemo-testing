@@ -72,7 +72,7 @@ class LoginPage extends Page {
         await elCloseMenuButton.click();
         console.log(`LoginPage.resetAppState, clicked on close menu button`);
     }
-
+    // TODO: Test this method
     async resetAppStateAndLogout(){
         // const elMenuButton = await $('#react-burger-menu-btn')
         
@@ -94,6 +94,14 @@ class LoginPage extends Page {
         await elLogoutLink.click();
 
     }
+
+    async ensureOnLogoutPage(){
+        const url = await browser.getUrl();
+        const expectedurl = "https://www.saucedemo.com/"
+        if (url !== expectedurl)
+            throw Error(`LoginPage.ensureOnLogoutPage: Not on correct page; On page ${url}, expecting ${expectedurl}`);
+    }
+
     async checkIfOnErroredLogoutPage(error_url){ 
         await browser.refresh();       
         const url = await browser.getUrl();
