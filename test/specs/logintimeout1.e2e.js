@@ -5,6 +5,8 @@ const delay = require ('delay');
 const LoginData = require('../../data/logindata');
 
 describe("Login Timeout", ()=>{
+    // State Machine
+    // X 1 A 2 16 Z
     it("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{
         
         // https://www.npmjs.com/package/delay
