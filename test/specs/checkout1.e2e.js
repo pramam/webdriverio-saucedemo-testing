@@ -10,40 +10,31 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 3
     it('TestCase_1: should be able to add one item to cart and remove it, add it again from inventory page', async()=> {
+        let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
 
         await InventoryPage.ensureOnPage();
 
-        console.log(`TestCase_1: Logged in`)
+        stepnum += 3;
+        console.log(`TestCase_1: S${stepnum}: Logged in`)
  
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         await CartPage.checkNumCartItems(1);
-        console.log("TestCase_1: Added item to cart");
+        stepnum += 2;
+        console.log(`TestCase_1: S${stepnum}: Added item to cart`);
 
         await CartPage.removeItemFromCart("#remove-sauce-labs-backpack");
         await CartPage.checkNumCartItems(0);
-        console.log("TestCase_1: Removed item successfully");
+        stepnum += 2;
+        console.log(`TestCase_1: S${stepnum}: Removed item successfully`);
 
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         await CartPage.checkNumCartItems(1);
-        console.log("TestCase_1: Added removed item to cart again");
-        // const elMenuButton = await $('#react-burger-menu-btn')
-        // await elMenuButton.click();
-        // await browser.pause(5000);
-        // const elLogoutLink = await $('#logout_sidebar_link')
-        // TODO: Getting: Request failed with status 400 element not interactable
-        // await elLogoutLink.click();
-        // await LoginPage.logout();
-        
-        // await LoginPage.resetAppStateAndLogout();
-        // console.log("TestCase_1: Successfully resetAppStateAndLogout out")
-        // await LoginPage.logout();
-        // console.log("TestCase_1: Successfully logged out")
+        stepnum += 2;
+        console.log(`TestCase_1: S${stepnum}: Added removed item to cart again`);
+        console.log(`TestCase_1: S${stepnum} END`);
     })
-
-    // Other Tests to write:
-    // should not be able to checkout with problem_user
 });
 
 

@@ -15,47 +15,54 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 4 B 6 C 9 D 12 E
     it("TestCase_2: should be able to add one item to cart and check it out successfully", async ()=>{ 
+        let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
  
         await InventoryPage.ensureOnPage();
-
-        console.log(`TestCase_2: Logged in`)
+        stepnum += 3;
+        console.log(`TestCase_2: S${stepnum} Logged in`)
  
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
 
-        console.log("TestCase_2: Added item to cart");
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} Added item to cart`);
 
         // This check  is done on inventory page
         await CartPage.checkNumCartItems(1);
         await CartPage.clickOnCartIcon();
 
-
         await CartPage.ensureOnPage();
         // Checking count again on next page.
         await CartPage.checkNumCartItems(1);
-        console.log("TestCase_2: Checked 1 item in cart, clicked on Cart Icon,ensured On CartPage");
+        stepnum += 4;
+        console.log(`TestCase_2: S${stepnum} Checked 1 item in cart, clicked on Cart Icon,ensured On CartPage`);
         //TODO: Check that the cart has:
         //      - the right item in it. Need the name of the item
         //      - the right quantity
         //      - the right price
 
         await CartPage.clickOnCheckout();
-        console.log("TestCase_2: Clicked on Checkout from CartPage");
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} Clicked on Checkout from CartPage`);
         
         await CheckoutStep1Page.ensureOnPage();
-        console.log("TestCase_2: Ensured on CheckoutStep1Page");
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} Ensured on CheckoutStep1Page`);
  
         await CartPage.checkNumCartItems(1);
  
         await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
-        console.log("TestCase_2: CheckoutStep1Page: Filled in customer info");
+        stepnum += 2;
+        console.log(`TestCase_2: S${stepnum} CheckoutStep1Page: Filled in customer info`);
         
         await CheckoutStep1Page.clickOnContinue();
-        console.log("TestCase_2: CheckoutStep1Page: Clicked on Continue");    
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} CheckoutStep1Page: Clicked on Continue`);    
         
         await CheckoutStep2Page.ensureOnPage();
-        console.log("TestCase_2: CheckoutStep2Page: ensure on page");    
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} CheckoutStep2Page: ensure on page`);    
        
         // TODO: Add a wait > 10 mins and check that you are logged out
 
@@ -63,13 +70,16 @@ describe('UserStory: Checkout', () => {
         await CartPage.checkNumCartItems(1);
  
         await CheckoutStep2Page.clickOnFinish();
-        console.log("TestCase_2: CheckoutStep2Page: Clicked on Finish");    
+        stepnum += 2;
+        console.log(`TestCase_2: S${stepnum} CheckoutStep2Page: Clicked on Finish`);    
          
         await CheckoutCompletePage.ensureOnPage();
-        console.log("TestCase_2: CheckoutCompletePage: ensureOnPage"); 
+        stepnum += 1;
+        console.log(`TestCase_2: S${stepnum} CheckoutCompletePage: ensureOnPage`); 
         await CartPage.checkNumCartItems(0);
-        
+        stepnum += 1;
         // TODO: Should be able to logout
+        console.log(`TestCase_2: S${stepnum} END`);
     })
 
 });

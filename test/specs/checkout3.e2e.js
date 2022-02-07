@@ -15,18 +15,21 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 2 2 4 B 5 A 3 4 B 6 C 7 B 6 C 9 D 12
     it("TestCase_3: Add multiple items to cart, Continue shopping from cart, Cancel from Checkout1, to successful checkout", async ()=>{ 
+        let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
  
         await InventoryPage.ensureOnPage();
+        stepnum +=3;
 
-        console.log(`TestCase_3: Logged in`)
+        console.log(`TestCase_3: S${stepnum} Logged in`)
  
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
-
-        console.log("TestCase_3: Added 3 items to cart");
+        stepnum += 3;
+        
+        console.log(`TestCase_3: S${stepnum} Added 3 items to cart`);
 
         // This check  is done on inventory page
         await CartPage.checkNumCartItems(3);
@@ -37,12 +40,14 @@ describe('UserStory: Checkout', () => {
         await CartPage.checkNumCartItems(3);
 
         await CartPage.clickOnContinueShopping();
-        console.log("TestCase_3: Click on Continue Shopping from Cart page");
+        stepnum +=5;
+        console.log(`TestCase_3: S${stepnum} Click on Continue Shopping from Cart page`);
 
         await InventoryPage.ensureOnPage();
 
         await CartPage.removeItemFromCart('#remove-sauce-labs-bolt-t-shirt');
-        console.log("TestCase_3: Removed 1 item from cart");
+        stepnum += 2;
+        console.log(`TestCase_3: S${stepnum} Removed 1 item from cart`);
 
         await CartPage.checkNumCartItems(2);
 
@@ -50,45 +55,53 @@ describe('UserStory: Checkout', () => {
         await CartPage.ensureOnPage();
 
         await CartPage.clickOnCheckout();
-        console.log("TestCase_3: Clicked on Checkout from CartPage");
+        stepnum += 4;
+        console.log(`TestCase_3: S${stepnum} Clicked on Checkout from CartPage`);
 
         await CheckoutStep1Page.ensureOnPage();
-        console.log("TestCase_3: Ensured on CheckoutStep1Page");
+        stepnum += 1;
+        console.log(`TestCase_3: S${stepnum} Ensured on CheckoutStep1Page`);
  
         await CartPage.checkNumCartItems(2);
         await CheckoutStep1Page.clickOnCancel1();
-
-        console.log("TestCase_3: Cancel from CheckoutStep1Page"); 
+        stepnum += 2;
+        console.log(`TestCase_3: S${stepnum} Cancel from CheckoutStep1Page`); 
 
         await CartPage.ensureOnPage();
         await CartPage.checkNumCartItems(2);
-        console.log("TestCase_3: CartPage: ensureOnPage"); 
+        stepnum += 2;
+        console.log(`TestCase_3: S${stepnum} CartPage: ensureOnPage`); 
 
         await CartPage.clickOnCheckout();
         
         await CheckoutStep1Page.ensureOnPage();
         await CartPage.checkNumCartItems(2);
-        console.log("TestCase_3: Click on Checkout a 2nd time, check 2 items in cart"); 
+        stepnum += 3;
+        console.log(`TestCase_3: S${stepnum} Click on Checkout a 2nd time, check 2 items in cart`); 
 
         await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
-        console.log("TestCase_3: CheckoutStep1Page: Filled in customer info");
+        stepnum += 1;
+        console.log(`TestCase_3: S${stepnum} CheckoutStep1Page: Filled in customer info`);
 
         await CheckoutStep1Page.clickOnContinue();
 
         await CheckoutStep2Page.ensureOnPage();
-        console.log("TestCase_3: CheckoutStep2Page: ensure on page");    
+        stepnum += 2;
+        console.log(`TestCase_3: S${stepnum} CheckoutStep2Page: ensure on page`);    
        
         await CartPage.checkNumCartItems(2);
  
         await CheckoutStep2Page.clickOnFinish();
-        console.log("TestCase_3: CheckoutStep2Page: Clicked on Finish");    
+        stepnum += 2;
+        console.log(`TestCase_3: S${stepnum} CheckoutStep2Page: Clicked on Finish`);    
 
         await CheckoutCompletePage.ensureOnPage();
-        console.log("TestCase_3: CheckoutCompletePage: ensureOnPage"); 
+        stepnum += 1;
+        console.log(`TestCase_3: S${stepnum} CheckoutCompletePage: ensureOnPage`); 
         await CartPage.checkNumCartItems(0);
-
-        return;
+        stepnum += 1;
         // TODO: Should be able to logout
+        console.log(`TestCase_3: S${stepnum} END`);
     })
 });
 
