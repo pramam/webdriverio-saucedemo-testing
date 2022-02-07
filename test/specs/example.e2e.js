@@ -4,18 +4,26 @@ const LoginData = require('../../data/logindata');
 
 describe('Sauce Demo', () => {
     it('Login_1:should login with valid credentials', async () => {
+        let stepnum = 0;
         await LoginPage.open();
 
         await LoginPage.login(LoginData.userName, LoginData.password);
         await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
+        stepnum += 3;
+        console.log(`Login_1: S${stepnum} END`);
     });
+
     it('Login_2:should be able to logout after login', async () => {
+        let stepnum = 0;
         await LoginPage.open();
 
         await LoginPage.login(LoginData.userName, LoginData.password);
         await expect(InventoryPage.secondaryTitle).toHaveTextContaining('PRODUCTS');
-
+        stepnum += 3;
+        console.log(`Login_2: S${stepnum} Logged in`);
+        
         await LoginPage.logout();
+        console.log(`Login_2: S${stepnum} END`);
     });
 });
 

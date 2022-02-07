@@ -10,20 +10,22 @@ describe('UserStory: Reset Cart State', () => {
     // State machine info:
     // X 1 A 2 2 15 A
     it('Reset_1: should be able to add two items to cart and zero it out by Reset App State from burger menu on the Inventory Page', async()=> {
+        let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
 
         await InventoryPage.ensureOnPage();
-
-        console.log(`Reset_1: Logged in`)
+        stepnum += 3;
+        console.log(`Reset_1: S${stepnum} Logged in`)
  
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');
-        console.log("Reset_1: Added 2 items to cart");
+        stepnum += 2;
+        console.log(`Reset_1: S${stepnum} Added 2 items to cart`);
  
         // This is done on Inventory page
         await CartPage.checkNumCartItems(2);
-
+        stepnum += 1;
         // const elMenuButton = await $('#react-burger-menu-btn')
         // await elMenuButton.click();
         // await browser.pause(5000);
@@ -32,12 +34,16 @@ describe('UserStory: Reset Cart State', () => {
         // await elLogoutLink.click();
         // await LoginPage.logout();
         await LoginPage.resetAppState();
-        console.log(`Reset_1: resetAppState from Inventory page`);
+        stepnum += 1;
+        console.log(`Reset_1: S${stepnum} resetAppState from Inventory page`);
 
         await CartPage.checkNumCartItems(0);
-        console.log(`Reset_1: Confirmed number of items in cart is 0`);
+        stepnum += 1;
+        console.log(`Reset_1: S${stepnum} Confirmed number of items in cart is 0`);
         // Ensure on same page
         await InventoryPage.ensureOnPage();
+        stepnum += 1;
+        console.log(`Reset_1: S${stepnum} END`);
     })
 
 });
