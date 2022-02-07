@@ -14,8 +14,8 @@ describe('UserStory: Checkout', () => {
 
     // This is TestCase_2 modified with an intermediate logout-login from checkoutstep1 page
     // State machine info:
-    // X 1 A 2 4 B 6 C 14(Logout) Y 1(Login) A 4 B 6 C 9 D 12 E
-    it("TestCase_13: (TestCase_2 modified) should be able to add one item to cart, logout, log back in and check it out successfully", async ()=>{ 
+    // X 1 A 2 4 B 6 C 9 D 14(Logout) Y 1(Login) A 4 B 6 C 9 D 12 E
+    it("TestCase_13: (TestCase_2 modified) should be able to add one item to cart, logout at checkoutStep2 page, log back in and check it out successfully", async ()=>{ 
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
