@@ -3,6 +3,8 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const LoginData = require('../../data/logindata');
 
 describe('Sauce Demo', () => {
+    // State machine
+    // X 1 A
     it('Login_1:should login with valid credentials', async () => {
         let stepnum = 0;
         await LoginPage.open();
@@ -12,7 +14,8 @@ describe('Sauce Demo', () => {
         stepnum += 3;
         console.log(`Login_1: S${stepnum} END`);
     });
-
+    // State machine:
+    // X 1 A 14
     it('Login_2:should be able to logout after login', async () => {
         let stepnum = 0;
         await LoginPage.open();

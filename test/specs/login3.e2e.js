@@ -3,6 +3,8 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const LoginData = require('../../data/logindata');
 
 describe("Login-Logout", ()=>{
+    // State machine:
+    // X 1 A 14 1 A
     it('Login_3:should be able to login, logout, login', async () => {
         let stepnum = 0;
 

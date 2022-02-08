@@ -1,6 +1,8 @@
 const LoginPage = require('../pageobjects/login.page');
 
 describe("Login Error", ()=>{
+    // State Machine:
+    // A Z
     it("LoginError_2: accessing a valid page without being logged in should show correct Error message", async()=>{
         let stepnum = 0;
         const subPath = 'inventory.html'
