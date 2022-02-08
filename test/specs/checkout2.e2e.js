@@ -13,7 +13,7 @@ describe('UserStory: Checkout', () => {
 
 
     // State machine info:
-    // X 1 A 2 4 B 6 C 9 D 12 E
+    // X 1 A 2 4 B 6 C 17 9 D 12 E
     it("TestCase_2: should be able to add one item to cart and check it out successfully", async ()=>{ 
         let stepnum = 0;
         await LoginPage.open();

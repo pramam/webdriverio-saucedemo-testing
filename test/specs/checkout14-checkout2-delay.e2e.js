@@ -15,7 +15,7 @@ describe('UserStory: Checkout', () => {
 
     // This is TestCase_2 modified with an intermediate delay from checkoutstep2 page
     // State machine info:
-    // X 1 A 2 4 B 6 C 9 D 16(delay) Z  1(Login) A 4 B 6 C 9 D 12 E
+    // X 1 A 2 4 B 6 C 17 9 D 16(delay) Z  1(Login) A 4 B 6 C 17 9 D 12 E
     it("TestCase_14: (TestCase_2 modified) should be able to add one item to cart, delay on checkoutStep2 page, logged out, log back in and check it out successfully", async ()=>{ 
         let stepnum = 0;
         await LoginPage.open();

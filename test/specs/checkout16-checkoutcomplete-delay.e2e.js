@@ -16,7 +16,7 @@ describe('UserStory: Checkout', () => {
     // This is TestCase_2 modified with logout-login from CheckoutComplete page
     // Log back in and make sure there are 0 items in cart
     // State machine info:
-    // X 1 A 2 4 B 6 C 9 D 12 E 16(delay) Z 1(Login) A
+    // X 1 A 2 4 B 6 C 17 9 D 12 E 16(delay) Z 1(Login) A
     it("TestCase_16: (TestCase_2 modified) should be able to add one item to cart and go to checkoutComplete page, delay, logged out, log back in and check 0 items in cart", async ()=>{ 
         let stepnum = 0;
         await LoginPage.open();

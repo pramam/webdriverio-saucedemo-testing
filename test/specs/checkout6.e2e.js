@@ -14,8 +14,8 @@ describe('UserStory: Checkout', () => {
 
     // State machine info:
     // Testing states 10, 11: CartIcon from CheckoutStep2, Cancel from CheckoutStep2
-    // X 1 A 2 2 2 4 B 6 C [fill in customer info] 9 D 10 B 6 C 9 D 11 
-    // ...A 4 B 6 C 9 D 12 E
+    // X 1 A 2 2 2 4 B 6 C 17 9 D 10 B 6 C 17 9 D 11 
+    // ...A 4 B 6 C 17 9 D 12 E
     it("TestCase_6: Testing CartIcon from CheckoutStep2, Cancel from CheckoutStep2", async ()=>{ 
         let stepnum = 0;
         await LoginPage.open();
