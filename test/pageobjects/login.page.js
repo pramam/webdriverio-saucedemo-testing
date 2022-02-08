@@ -62,7 +62,8 @@ class LoginPage extends Page {
         // Wait for the modal to slide in for display
         await browser.pause(500);
         const elResetLink = await $('#reset_sidebar_link')
-        await elResetLink.waitForClickable({ timeout: 5000 });
+        await elResetLink.waitForClickable({ timeout: 2000 });
+        console.log(`LoginPage.resetAppState, waitedForClickable on reset link`);
         
         await elResetLink.click();
         console.log(`LoginPage.resetAppState, clicked on reset link`);
