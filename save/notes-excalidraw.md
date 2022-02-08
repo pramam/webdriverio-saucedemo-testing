@@ -1,8 +1,6 @@
 # Excalidraw saved urls
 
-This is the [link](https://excalidraw.com/#json=AW8bho3lv1JrryPn_-aWl,OPoez6xyPyrqg1qWoVRC2A
-) to the state machine diagram with 16 test cases
+This is the [link](https://excalidraw.com/#json=UA7WgBBF_BWqw1mge0Jc3,lv-xRx-Z45i2kpLYRhxHJQ) to the state machine diagram with 17 test cases
 
-This is the [link](https://excalidraw.com/#json=7u5YKGQRfLj1WYEHgO5-k,0Kj8pNW7Btxtyk8CVGaXhQ
-) to the state machine with the login/reset test cases
+This is the [link](https://excalidraw.com/#json=X-IrSLoOGbyS6VXnNNEOP,B1Vn6jQkI4XTdueBdQnrRw) to the state machine with the login/reset test cases
 
