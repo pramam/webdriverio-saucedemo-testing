@@ -55,6 +55,7 @@ describe('UserStory: Checkout', () => {
         await CheckoutStep2Page.clickOnFinish();
 
         await CheckoutCompletePage.ensureOnPage();
+        stepnum += 2;
         console.log(`TestCase_15: S${stepnum} CheckoutCompletePage: ensure on page`);    
 
         await CartPage.checkNumCartItems(0);
