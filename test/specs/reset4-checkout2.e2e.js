@@ -6,7 +6,7 @@ const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
 
-describe('UserStory: Checkout', () => {
+describe('UserStory: Reset Cart State', () => {
 
     //TODO: Investigate: Running all the tests together is causing second test to fail
     //      Do I need to logout after one test?

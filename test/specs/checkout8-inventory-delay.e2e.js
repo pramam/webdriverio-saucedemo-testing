@@ -8,7 +8,7 @@ const LoginData = require('../../data/logindata');
 const delay = require ('delay');
 const allureReporter = require('@wdio/allure-reporter').default;
 
-describe('UserStory: Checkout', () => {
+describe('UserStory: Delay', () => {
 
     //TODO: Investigate: Running all the tests together is causing second test to fail
     //      Do I need to logout after one test?

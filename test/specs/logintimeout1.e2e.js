@@ -5,7 +5,7 @@ const delay = require ('delay');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
 
-describe("Login Timeout", ()=>{
+describe("UserStory: Delay", ()=>{
     // State Machine
     // X 1 A 2 16 Z
     it("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{

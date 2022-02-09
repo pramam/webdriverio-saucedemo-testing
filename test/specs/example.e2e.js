@@ -3,7 +3,7 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
 
-describe('Sauce Demo', () => {
+describe('UserStory: Login', () => {
     // State machine
     // X 1 A
     it('Login_1:should login with valid credentials', async () => {
