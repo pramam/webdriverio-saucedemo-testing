@@ -3,12 +3,13 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
 const delay = require ('delay');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe("Login Timeout", ()=>{
     // State Machine
     // X 1 A 2 16 Z
     it("LoginTimeout_1: logged in user should be kicked out after 10 minutes", async()=>{
-        
+        allureReporter.addFeature('Logout');
         // https://www.npmjs.com/package/delay
         let stepnum = 0;
         await LoginPage.open();

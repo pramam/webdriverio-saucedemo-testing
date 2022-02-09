@@ -2,6 +2,8 @@ const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
+
 
 describe('UserStory: Checkout', () => {
 
@@ -10,6 +12,7 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 3
     it('TestCase_1: should be able to add one item to cart and remove it, add it again from inventory page', async()=> {
+        allureReporter.addFeature('Checkout');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

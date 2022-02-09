@@ -5,6 +5,7 @@ const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout', () => {
 
@@ -16,6 +17,7 @@ describe('UserStory: Checkout', () => {
     // Testing states 8, 13: CheckoutStep1->CartIcon->CartPage, CheckoutComplete->BackHome->InventoryPage
     // X 1 A 2 2 2 2 2 4 B 6 C [don't fill customer info] 8 B 3 B 6 C 17 9 D 12 E 13 A
     it("TestCase_5: Add 5 items to cart, got to CheckoutStep1, don't fill in customer info, go Back to Cart, Remove an item, continue to checkout, go Back Home", async ()=>{ 
+        allureReporter.addFeature('Checkout');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

@@ -6,6 +6,7 @@ const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
 const delay = require('delay');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout', () => {
 
@@ -18,6 +19,7 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 4 B 6 C 17 9 D 12 E 16(delay) Z 1(Login) A
     it("TestCase_16: (TestCase_2 modified) should be able to add one item to cart and go to checkoutComplete page, delay, logged out, log back in and check 0 items in cart", async ()=>{ 
+        allureReporter.addFeature('Delay');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

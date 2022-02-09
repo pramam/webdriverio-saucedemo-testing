@@ -3,8 +3,8 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
 const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
-const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout', () => {
 
@@ -15,6 +15,7 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 4 B 6 C 17 9 D 15 10 B
     it("Reset_4: should be able to add one item to cart and check it out successfully", async ()=>{ 
+        allureReporter.addFeature('Reset');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

@@ -1,11 +1,13 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('Sauce Demo', () => {
     // State machine
     // X 1 A
     it('Login_1:should login with valid credentials', async () => {
+        allureReporter.addFeature('Login');
         let stepnum = 0;
         await LoginPage.open();
 
@@ -17,6 +19,7 @@ describe('Sauce Demo', () => {
     // State machine:
     // X 1 A 14
     it('Login_2:should be able to logout after login', async () => {
+        allureReporter.addFeature('Login');
         let stepnum = 0;
         await LoginPage.open();
 

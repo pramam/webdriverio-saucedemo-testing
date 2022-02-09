@@ -5,6 +5,7 @@ const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout', () => {
 
@@ -16,6 +17,7 @@ describe('UserStory: Checkout', () => {
     // State machine info:
     // X 1 A 2 4 B 14(Logout) Y 1(Login) A 4 B 6 C 17 9 D 12 E
     it("TestCase_9: (TestCase_2 modified) should be able to add one item to cart, go to Cart page, logout, log back in and check it out successfully", async ()=>{ 
+        allureReporter.addFeature('Logout');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

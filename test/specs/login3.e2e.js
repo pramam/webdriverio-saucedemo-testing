@@ -1,11 +1,13 @@
 const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe("Login-Logout", ()=>{
     // State machine:
     // X 1 A 14 1 A
     it('Login_3:should be able to login, logout, login', async () => {
+        allureReporter.addFeature('Login');
         let stepnum = 0;
 
         await LoginPage.open();

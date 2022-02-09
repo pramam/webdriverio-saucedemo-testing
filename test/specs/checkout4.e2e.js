@@ -3,6 +3,7 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
 const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout', () => {
 
@@ -12,6 +13,7 @@ describe('UserStory: Checkout', () => {
     // State Machine:
     // X 1 A 2 4 B 6 C <incomplete cust info> <should see error>
     it("TestCase_4: should error out when customer information is missing", async ()=>{ 
+        allureReporter.addFeature('Checkout');
         let stepnum = 0;
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);
