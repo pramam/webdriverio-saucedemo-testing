@@ -24,7 +24,6 @@ const Page = require ('./page');
 
         if (count != num)
             throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
-        console.log(`CartPage: Cart has ${count} items`)
     }
 
     async checkCartIsEmpty(){
