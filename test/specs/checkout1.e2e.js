@@ -14,7 +14,7 @@ describe('UserStory: Checkout: Add one item to cart and remove it from cart from
         })
     })
     describe(`Inventory Page`, ()=>{
-        it(`should ensure user is in Inventory Page`, async ()=>{
+        it(`should be on Inventory Page`, async ()=>{
             await InventoryPage.ensureOnPage();
         })
 
