@@ -16,13 +16,16 @@ describe('UserStory: Checkout : Add one item to cart and check it out successful
         })
     })
     describe(`Inventory Page`, ()=> {
-        it(`should ensure user is on Inventory Page`, async ()=> {
+        it(`should be on Inventory Page`, async ()=> {
             await InventoryPage.ensureOnPage();
         })
     })
-    describe(`Add item to cart`, ()=>{
-        it(`should add item to cart`, async ()=> {
+    describe(`Add 1 item to cart`, ()=>{
+        it(`should add 1 item to cart`, async ()=> {
             await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+            await CartPage.checkNumCartItems(1);
+        })
+        it(`cart should have 1 item`, async ()=>{
             await CartPage.checkNumCartItems(1);
         })
     })
@@ -30,6 +33,8 @@ describe('UserStory: Checkout : Add one item to cart and check it out successful
         it(`click on Cart Icon`, async ()=>{
             await CartPage.clickOnCartIcon();
         })
+    })
+    describe(`Cart Page`, ()=>{
         it(`should be on Cart Page`, async ()=>{
             await CartPage.ensureOnPage();
         })
