@@ -94,7 +94,7 @@ describe('UserStory: Reset Cart State', () => {
         await CheckoutCompletePage.ensureOnPage();
 
         // extra step, go back to Cart Page and check items there too
-        await CheckoutCompletePage.clickOnCartIcon();
+        await CartPage.clickOnCartIcon();
         stepnum += 2;
         console.log(`Reset_5: S${stepnum} CheckoutCompletePage: Clicked on cart icon`);    
         

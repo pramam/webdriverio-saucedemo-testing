@@ -242,8 +242,9 @@ exports.config = {
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
     // allure screenshot on failing tests
-    afterTest: function(test, context, { error, result, duration, passed, retries }) {
-        browser.takeScreenshot();
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if (!passed)
+            await browser.takeScreenshot();
     },
 
 
