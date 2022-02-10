@@ -20,10 +20,10 @@ describe('UserStory: Checkout: Add one item to cart and remove it from cart from
 
     })
     describe(`Add, Remove item from cart`, ()=>{
-        it(`should add item to cart`, async ()=>{
+        it(`should add 1 item to cart`, async ()=>{
             await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         })
-        it(`should remove item from cart`, async ()=> {
+        it(`should remove 1 item from cart`, async ()=> {
             await InventoryPage.removeItemFromCart("#remove-sauce-labs-backpack");
         })
     })
