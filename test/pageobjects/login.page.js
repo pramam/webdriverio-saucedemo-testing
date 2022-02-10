@@ -80,12 +80,22 @@ class LoginPage extends Page {
         await elLogoutLink.click();
 
     }
-    async checkIfOnErroredLogoutPage(){
+    async checkIfOnErroredLogoutPage(error_url){ 
+        await browser.refresh();       
+        const url = await browser.getUrl();
+
+        if (url !== "https://www.saucedemo.com/")
+            throw Error(`Login.checkIfOnErroredLogout: Not on correct page, current page is ${url}`);
+        
         const myElem = await $('[data-test="error"]')
         await myElem.waitForDisplayed({ timeout: 3000 });
 
-        if (await browser.getUrl() !== "https://www.saucedemo.com")
-            throw Error("Login.checkIfOnErroredLogout: Not on correct page")
+        // Error message:
+        // Epic sadface: You can only access '/checkout-step-two.html' when you are logged in.
+        const errMsg = await myElem.getText();
+        
+        if (errMsg !== `Epic sadface: You can only access '${error_url}' when you are logged in.`)
+            throw Error(`LoginPage.checkIfOnErroredLogoutPage, ${errMsg} doesn't match what I expect for error_url ${error_url}`)
     }
 }
 
