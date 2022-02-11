@@ -14,6 +14,11 @@ class InventoryPage extends Page {
     async ensureOnPage(){
         if (await browser.getUrl() !== "https://www.saucedemo.com/inventory.html")
             throw Error("InventoryPage.ensureOnPage: Not on correct page")
+        
+        let title = 'PRODUCTS';
+
+        if (await this.secondaryTitle.getText() !== title)
+            throw Error("InventoryPage.ensureOnPage: title does not match")
     }
 
     // id_name starts with '#'
