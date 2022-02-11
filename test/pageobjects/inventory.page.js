@@ -16,9 +16,10 @@ class InventoryPage extends Page {
             throw Error("InventoryPage.ensureOnPage: Not on correct page")
         
         let title = 'PRODUCTS';
+        let actualTitle = await this.secondaryTitle.getText();
 
-        if (await this.secondaryTitle.getText() !== title)
-            throw Error("InventoryPage.ensureOnPage: title does not match")
+        if ( actualTitle !== title)
+            throw Error(`InventoryPage.ensureOnPage: title ${actualTitle} does not match expected title ${title}`)
     }
 
     // id_name starts with '#'
