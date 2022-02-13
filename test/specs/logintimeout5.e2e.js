@@ -2,7 +2,11 @@ const LoginPage = require('../pageobjects/login.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const delay = require ('delay');
 
-describe("Login Timeout : Logged in user should be kicked out after 10 minutes", ()=>{
+describe("Login Timeout : Logged in user should be kicked out after 10 minutes", function (){
+    // Increase total timeout for this test from the default in wdio.conf.js
+    // The above describe should have a function as second arg, not a fat arrow
+    // https://stackoverflow.com/questions/23492043/change-default-timeout-for-mocha/45220192#45220192
+    this.timeout(700000);
 
     describe(`Login`, ()=>{
         it(`should login user`, async ()=>{
@@ -20,11 +24,9 @@ describe("Login Timeout : Logged in user should be kicked out after 10 minutes",
             await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         })
     })
-    describe(`Wait for 10 mins + a bit`, ()=>{
+    describe(`Wait for 10 mins + a bit`, function (){
         it(`delay for 10 mins + a bit`, async ()=>{
-          
             // https://www.npmjs.com/package/delay
-            
             // wait 10 mins + a bit
             await delay(10 * 60 * 1000 +1000)
         })
