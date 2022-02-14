@@ -57,6 +57,11 @@ describe('UserStory: Checkout: Should error out when customer information is mis
         it(`fill in customer info with missing first name`, async ()=>{
             await CheckoutStep1Page.fillInCustomerInfo("", "Doe", "90210");
         })
+        it(`validate customer info`, async ()=>{
+            await expect(CheckoutStep1Page.firstName).toHaveValue('');
+            await expect(CheckoutStep1Page.lastName).toHaveValue('Doe');
+            await expect(CheckoutStep1Page.postalCode).toHaveValue('90210');
+        })
     })
     describe(`Click on Continue`, () => {
         it(`click on Continue`, async ()=> {

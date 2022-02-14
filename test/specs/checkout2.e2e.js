@@ -58,6 +58,11 @@ describe('UserStory: Checkout : Add one item to cart and check it out successful
         it(`fill in customer info`, async ()=>{
             await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
         })
+        it(`validate customer info`, async ()=>{
+            await expect(CheckoutStep1Page.firstName).toHaveValue('Jane');
+            await expect(CheckoutStep1Page.lastName).toHaveValue('Doe');
+            await expect(CheckoutStep1Page.postalCode).toHaveValue('90210');
+        })
     })
     describe (`Click on Continue`, ()=>{
         it(`click on Continue`, async ()=>{
