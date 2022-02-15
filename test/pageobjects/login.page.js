@@ -96,14 +96,6 @@ class LoginPage extends Page {
         await elLogoutLink.click();
 
     }
-
-    async ensureOnLogoutPage(){
-        const url = await browser.getUrl();
-        const expectedurl = "https://www.saucedemo.com/"
-        if (url !== expectedurl)
-            throw Error(`LoginPage.ensureOnLogoutPage: Not on correct page; On page ${url}, expecting ${expectedurl}`);
-    }
-
     async checkIfOnErroredLogoutPage(error_url){ 
         await browser.refresh();       
         const url = await browser.getUrl();

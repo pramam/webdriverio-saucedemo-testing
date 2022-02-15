@@ -12,22 +12,19 @@ describe('UserStory: Checkout: Add one item to cart and checkout successfully', 
     //      Do I need to logout after one test?
     // State machine info:
     // X 1 A 2 3
-    describe('Login', ()=>{
+    context('Login', ()=>{
         it(`should login user ${LoginData.userName}`, async ()=> {
             await LoginPage.open();
             await LoginPage.login(LoginData.userName, LoginData.password);
         })
     })
-    describe('Inventory Page', ()=> {
-        it(`should ensure user is on Inventory Page`, async ()=> {
+    context(`Inventory Page`, ()=>{
+        it(`should be on Inventory Page`, async ()=>{
             await InventoryPage.ensureOnPage();
         })
-        it(`should ensure the Inventory page has the right content`, async ()=>{
-
-        })
     })
+    context(`Add, Remove, Add item to cart`, ()=>{
 
-    describe(`Add, Remove, Add item to cart`, ()=>{
         it(`should add item to cart`, async ()=>{
             await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
             await CartPage.checkNumCartItems(1);

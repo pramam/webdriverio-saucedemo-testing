@@ -7,10 +7,18 @@ const Page = require ('./page');
     /**
      * define selectors using getter methods
      */
+     get secondaryTitle() {
+        return $('#header_container > div.header_secondary_container > span')
+    }
 
     async ensureOnPage(){
         if (await browser.getUrl() !== "https://www.saucedemo.com/cart.html")
             throw Error("CartPage.ensureOnPage: Not on correct page")
+        
+        let title = 'YOUR CART';
+        let actualTitle = await this.secondaryTitle.getText();
+        if ( actualTitle !== title)
+            throw Error(`Cart.ensureOnPage: title ${actualTitle} does not match expected title ${title}`);
     }
 
     async clickOnCartIcon(){
@@ -34,7 +42,6 @@ const Page = require ('./page');
             
         if (count != num)
             throw Error(`CartPage.checkNumCartItems: has ${count} expecting ${num}`)
-        console.log(`CartPage: Cart has ${count} items`)
     }
 
     async #checkCartIsEmpty(){

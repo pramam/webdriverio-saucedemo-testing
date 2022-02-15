@@ -7,83 +7,93 @@ const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
 
-describe('UserStory: Checkout', () => {
-
-    //TODO: Investigate: Running all the tests together is causing second test to fail
-    //      Do I need to logout after one test?
-
+describe('UserStory: Checkout : Add one item to cart and check it out successfully', () => {
+    allureReporter.addFeature('Checkout');
 
     // State machine info:
-    // X 1 A 2 4 B 6 C 17 9 D 12 E
-    it("TestCase_2: should be able to add one item to cart and check it out successfully", async ()=>{ 
-        allureReporter.addFeature('Checkout');
-        let stepnum = 0;
-        await LoginPage.open();
-        await LoginPage.login(LoginData.userName, LoginData.password);
- 
-        await InventoryPage.ensureOnPage();
-        stepnum += 3;
-        console.log(`TestCase_2: S${stepnum} Logged in`)
- 
-        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} Added item to cart`);
-
-        // This check  is done on inventory page
-        await CartPage.checkNumCartItems(1);
-        await CartPage.clickOnCartIcon();
-
-        await CartPage.ensureOnPage();
-        // Checking count again on next page.
-        await CartPage.checkNumCartItems(1);
-        stepnum += 4;
-        console.log(`TestCase_2: S${stepnum} Checked 1 item in cart, clicked on Cart Icon,ensured On CartPage`);
-        //TODO: Check that the cart has:
-        //      - the right item in it. Need the name of the item
-        //      - the right quantity
-        //      - the right price
-
-        await CartPage.clickOnCheckout();
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} Clicked on Checkout from CartPage`);
-        
-        await CheckoutStep1Page.ensureOnPage();
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} Ensured on CheckoutStep1Page`);
- 
-        await CartPage.checkNumCartItems(1);
- 
-        await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
-        stepnum += 2;
-        console.log(`TestCase_2: S${stepnum} CheckoutStep1Page: Filled in customer info`);
-        
-        await CheckoutStep1Page.clickOnContinue();
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} CheckoutStep1Page: Clicked on Continue`);    
-        
-        await CheckoutStep2Page.ensureOnPage();
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} CheckoutStep2Page: ensure on page`);    
-       
-        // TODO: Add a wait > 10 mins and check that you are logged out
-
-        // TODO: Check that item in cart matches the description of the item we selected
-        await CartPage.checkNumCartItems(1);
- 
-        await CheckoutStep2Page.clickOnFinish();
-        stepnum += 2;
-        console.log(`TestCase_2: S${stepnum} CheckoutStep2Page: Clicked on Finish`);    
-         
-        await CheckoutCompletePage.ensureOnPage();
-        stepnum += 1;
-        console.log(`TestCase_2: S${stepnum} CheckoutCompletePage: ensureOnPage`); 
-        await CartPage.checkNumCartItems(0);
-        stepnum += 1;
-        // TODO: Should be able to logout
-        console.log(`TestCase_2: S${stepnum} END`);
+    // X 1 A 2 4 B 6 C 9 D 12 E
+    describe(`Login`, ()=>{
+        it(`should login user`, async ()=>{
+            await LoginPage.open();
+            await LoginPage.login(LoginData.userName, LoginData.password);
+        })
+    })
+    describe(`Inventory Page`, ()=> {
+        it(`should be on Inventory Page`, async ()=> {
+            await InventoryPage.ensureOnPage();
+        })
+    })
+    describe(`Add 1 item to cart`, ()=>{
+        it(`should add 1 item to cart`, async ()=> {
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+            await CartPage.checkNumCartItems(1);
+        })
+        it(`cart should have 1 item`, async ()=>{
+            await CartPage.checkNumCartItems(1);
+        })
+    })
+    describe(`Click on Cart Icon`, ()=>{
+        it(`click on Cart Icon`, async ()=>{
+            await CartPage.clickOnCartIcon();
+        })
+    })
+    describe(`Cart Page`, ()=>{
+        it(`should be on Cart Page`, async ()=>{
+            await CartPage.ensureOnPage();
+        })
+        it(`should have 1 item in Cart`, async ()=>{
+            await CartPage.checkNumCartItems(1);
+        })
     })
 
+    describe(`Click on Checkout`, ()=>{
+        it(`click on Checkout`, async ()=>{
+            await CartPage.clickOnCheckout();
+        })
+    })
+    describe(`Checkout Step1 Page`, ()=> {
+        it(`should be on Checkout Step1 Page`, async()=>{
+            await CheckoutStep1Page.ensureOnPage();
+        })
+        it(`should have 1 item in cart`, async ()=>{
+            await CartPage.checkNumCartItems(1);
+        })
+        it(`fill in customer info`, async ()=>{
+            await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
+        })
+        it(`validate customer info`, async ()=>{
+            await expect(CheckoutStep1Page.firstName).toHaveValue('Jane');
+            await expect(CheckoutStep1Page.lastName).toHaveValue('Doe');
+            await expect(CheckoutStep1Page.postalCode).toHaveValue('90210');
+        })
+    })
+    describe (`Click on Continue`, ()=>{
+        it(`click on Continue`, async ()=>{
+            await CheckoutStep1Page.clickOnContinue();
+        })
+    })
+    describe(`Checkout Step2 Page`, ()=>{
+        it(`should be on Checkout Step2 Page`, async ()=>{
+            await CheckoutStep2Page.ensureOnPage();
+        })
+        it(`should have 1 item in cart`, async ()=>{
+            await CartPage.checkNumCartItems(1);
+        })
+    })
+    describe(`Click on Finish`, ()=>{
+        it(`click on Finish`, async ()=>{
+            await CheckoutStep2Page.clickOnFinish();
+        })
+    })
+    describe(`Checkout Complete Page`, ()=>{
+        it(`should be on Checkout Complete page`, async ()=>{
+            await CheckoutCompletePage.ensureOnPage();
+        })
+        it(`cart should be empty`, async ()=>{
+            await CartPage.checkNumCartItems(0);
+
+        })
+    })
 });
 
 
