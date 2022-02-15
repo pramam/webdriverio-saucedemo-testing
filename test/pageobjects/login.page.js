@@ -35,6 +35,68 @@ class LoginPage extends Page {
     open() {
         return super.open('');
     }
+
+    async logout(){
+        const elMenuButton = await $('#react-burger-menu-btn')
+        await elMenuButton.click();
+        const elLogoutLink = await $('#logout_sidebar_link')
+        await browser.pause(5000);
+        await elLogoutLink.click();
+    }
+    async resetAppState(){
+        // const elMenuButton = await $('#react-burger-menu-btn')
+        
+        // await elMenuButton.click();
+        const elMenu = await $('.bm-menu');
+
+        expect(elMenu).toBeDisplayed();
+
+        
+        const elResetLink = await $('#reset_sidebar_link')
+        await browser.pause(5000);
+        await elResetLink.waitForClickable({ timeout: 5000 });
+        await elResetLink.click();
+
+    }
+
+    async resetAppStateAndLogout(){
+        // const elMenuButton = await $('#react-burger-menu-btn')
+        
+        // await elMenuButton.click();
+        const elMenu = await $('.bm-menu');
+        await elMenu.scrollIntoView();
+        expect(elMenu).toBeDisplayed();
+
+        
+        const elResetLink = await $('#reset_sidebar_link')
+        
+        await browser.pause(5000);
+        await elResetLink.waitForClickable({ timeout: 5000 });
+        await elResetLink.click();
+
+        
+        const elLogoutLink = await $('#logout_sidebar_link')
+        await browser.pause(5000);
+        await elLogoutLink.click();
+
+    }
+    async checkIfOnErroredLogoutPage(error_url){ 
+        await browser.refresh();       
+        const url = await browser.getUrl();
+
+        if (url !== "https://www.saucedemo.com/")
+            throw Error(`Login.checkIfOnErroredLogout: Not on correct page, current page is ${url}`);
+        
+        const myElem = await $('[data-test="error"]')
+        await myElem.waitForDisplayed({ timeout: 3000 });
+
+        // Error message:
+        // Epic sadface: You can only access '/checkout-step-two.html' when you are logged in.
+        const errMsg = await myElem.getText();
+        
+        if (errMsg !== `Epic sadface: You can only access '${error_url}' when you are logged in.`)
+            throw Error(`LoginPage.checkIfOnErroredLogoutPage, ${errMsg} doesn't match what I expect for error_url ${error_url}`)
+    }
 }
 
 module.exports = new LoginPage();
