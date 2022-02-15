@@ -30,7 +30,9 @@ class CheckoutCompletePage extends Page {
             throw Error (`CheckoutCompletePage.ensureOnPage: Header ${actualSecHeader} does not match expected header ${secHeader}`)
     }
     async clickOnBackHome(){
-        console.log("CheckoutCompletePage: To implement clickOnBackHome");
+        const elBackHome = await $('[data-test="back-to-products"');
+
+        await elBackHome.click();
     }
 }
 

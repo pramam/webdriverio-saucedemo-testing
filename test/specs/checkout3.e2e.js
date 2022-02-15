@@ -4,14 +4,17 @@ const CartPage = require('../pageobjects/cart.page');
 const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
+const LoginData = require('../../data/logindata');
+const allureReporter = require('@wdio/allure-reporter').default;
 
 describe('UserStory: Checkout: Add multiple items to cart, Continue shopping from cart and remove 1 item, Cancel from Checkout1, to successful checkout', () => {
+    allureReporter.addFeature('Checkout');
     // State machine info:
     // X 1 A 2 2 2 4 B 5 A 3 4 B 6 C 7 B 6 C 9 D 12
     describe(`Login`, ()=>{
         it(`should login user`, async ()=>{
             await LoginPage.open();
-            await LoginPage.login('standard_user', 'secret_sauce');
+            await LoginPage.login(LoginData.userName, LoginData.password);
         })
     })
     describe(`Inventory Page`, ()=>{
@@ -21,13 +24,13 @@ describe('UserStory: Checkout: Add multiple items to cart, Continue shopping fro
     })
     describe(`Add 3 items to cart`, ()=>{
         it(`add 1 item to cart`, async ()=>{
-            await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
         })
         it(`add 1 item to cart`, async ()=>{
-            await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');            
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-bike-light');            
         })
         it(`add 1 item to cart`, async ()=>{
-            await InventoryPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
         })
         it(`cart should have 3 items`, async ()=>{
             await CartPage.checkNumCartItems(3);
@@ -58,7 +61,7 @@ describe('UserStory: Checkout: Add multiple items to cart, Continue shopping fro
     })
     describe(`Remove 1 item from cart`, ()=>{
         it(`remove 1 item from cart`, async ()=>{
-            await InventoryPage.removeItemFromCart('#remove-sauce-labs-bolt-t-shirt');
+            await CartPage.removeItemFromCart('#remove-sauce-labs-bolt-t-shirt');
         })
         it(`should have 2 items in cart`, async ()=>{
             await CartPage.checkNumCartItems(2);
@@ -148,7 +151,7 @@ describe('UserStory: Checkout: Add multiple items to cart, Continue shopping fro
             await CheckoutCompletePage.ensureOnPage();
         })
         it(`cart should be empty`, async ()=>{
-            await CartPage.checkCartIsEmpty();
+            await CartPage.checkNumCartItems(0);
         })
     })
 });
