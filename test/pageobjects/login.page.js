@@ -113,6 +113,12 @@ class LoginPage extends Page {
         if (errMsg !== `Epic sadface: You can only access '${error_url}' when you are logged in.`)
             throw Error(`LoginPage.checkIfOnErroredLogoutPage, ${errMsg} doesn't match what I expect for error_url ${error_url}`)
     }
+    async ensureOnLogoutPage(){
+        const url = await browser.getUrl();
+        const expectedurl = "https://www.saucedemo.com/"
+        if (url !== expectedurl)
+            throw Error(`LoginPage.ensureOnLogoutPage: Not on correct page; On page ${url}, expecting ${expectedurl}`);
+    }
 }
 
 module.exports = new LoginPage();
