@@ -3,40 +3,36 @@ const InventoryPage = require('../pageobjects/inventory.page');
 const CartPage = require('../pageobjects/cart.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
+const {padDigits} = require('../../utils/myUtils');
 
-
-describe('UserStory: Checkout: Add one item to cart and checkout successfully', () => {
+describe('UserStory: Checkout: Add one item to cart, remove it, add it again', () => {
     allureReporter.addFeature('Checkout');
-
-    //TODO: Investigate: Running all the tests together is causing second test to fail
-    //      Do I need to logout after one test?
     // State machine info:
     // X 1 A 2 3
-    context('Login', ()=>{
-        it(`should login user ${LoginData.userName}`, async ()=> {
-            await LoginPage.open();
-            await LoginPage.login(LoginData.userName, LoginData.password);
-        })
+    let step = 0;
+    step++;
+    it(`${padDigits(step,3)} Login: should login user ${LoginData.userName}`, async ()=> {
+        await LoginPage.open();
+        await LoginPage.login(LoginData.userName, LoginData.password);
     })
-    context(`Inventory Page`, ()=>{
-        it(`should be on Inventory Page`, async ()=>{
-            await InventoryPage.ensureOnPage();
-        })
+    step++;
+    it(`${padDigits(step,3)} Inventory Page: should be on Inventory Page`, async ()=>{
+        await InventoryPage.ensureOnPage();
     })
-    context(`Add, Remove, Add item to cart`, ()=>{
-
-        it(`should add item to cart`, async ()=>{
-            await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-            await CartPage.checkNumCartItems(1);
-        })
-        it(`should remove item from cart`, async ()=>{
-            await CartPage.removeItemFromCart("#remove-sauce-labs-backpack");
-            await CartPage.checkNumCartItems(0);
-        })
-        it(`should add item to cart again`, async ()=>{
-            await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-            await CartPage.checkNumCartItems(1);
-        })
+    step++;
+    it(`${padDigits(step,3)} Add,Remove,Add: should add item to cart`, async ()=>{
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.checkNumCartItems(1);
+    })
+    step++;
+    it(`${padDigits(step,3)} Add,Remove,Add: should remove item from cart`, async ()=>{
+        await CartPage.removeItemFromCart("#remove-sauce-labs-backpack");
+        await CartPage.checkNumCartItems(0);
+    })
+    step++;
+    it(`${padDigits(step,3)} Add,Remove,Add: should add item to cart again`, async ()=>{
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
+        await CartPage.checkNumCartItems(1);
     })
 });
 
