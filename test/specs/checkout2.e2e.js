@@ -26,7 +26,6 @@ describe('UserStory: Checkout : Add one item to cart and check it out successful
     step++;
     it(`${padDigits(step,3)} Add 1 item to cart: should add 1 item to cart`, async ()=> {
         await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-        await CartPage.checkNumCartItems(1);
     })
     step++;
     it(`${padDigits(step,3)} Add 1 item to cart: cart should have 1 item`, async ()=>{
