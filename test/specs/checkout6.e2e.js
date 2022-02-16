@@ -6,105 +6,197 @@ const CheckoutStep2Page = require('../pageobjects/checkoutstep2.page');
 const CheckoutCompletePage = require ('../pageobjects/checkoutcomplete.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
+const {padDigits} = require('../../utils/myUtils');
 
 describe('UserStory: Checkout', () => {
-
-    //TODO: Investigate: Running all the tests together is causing second test to fail
-    //      Do I need to logout after one test?
-
-
+        
     // State machine info:
     // Testing states 10, 11: CartIcon from CheckoutStep2, Cancel from CheckoutStep2
     // X 1 A 2 2 2 4 B 6 C 17 9 D 10 B 6 C 17 9 D 11 
     // ...A 4 B 6 C 17 9 D 12 E
-    it("TestCase_6: Testing CartIcon from CheckoutStep2, Cancel from CheckoutStep2", async ()=>{ 
+    describe("Testing CartIcon from CheckoutStep2, Cancel from CheckoutStep2", async ()=>{ 
         allureReporter.addFeature('Checkout');
-        let stepnum = 0;
-        await LoginPage.open();
-        await LoginPage.login(LoginData.userName, LoginData.password);
- 
-        await InventoryPage.ensureOnPage();
-        stepnum += 3;
-        console.log(`TestCase_6: S${stepnum} Logged in`);
- 
-        await CartPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
-        await CartPage.addItemToCart('#add-to-cart-sauce-labs-fleece-jacket');
-        await CartPage.addItemToCart('#add-to-cart-sauce-labs-onesie');
-        stepnum += 3;
-        console.log(`TestCase_6: S${stepnum} Added 3 items to cart`);
-
-        await CartPage.checkNumCartItems(3);
-        await CartPage.clickOnCartIcon();
-        stepnum += 2;
-        console.log(`TestCase_6: S${stepnum} On Cart Page with 3 items`);
-
-        await CartPage.ensureOnPage();
-        await CartPage.checkNumCartItems(3);
-
-        await CartPage.clickOnCheckout();
-        stepnum += 3;
-        console.log(`TestCase_6: S${stepnum} Click on Checkout from Cart page`);
-
-        await CheckoutStep1Page.ensureOnPage();
-        stepnum += 1;
-        console.log(`TestCase_6: S${stepnum} Ensured on CheckoutStep1Page`);
- 
-        await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
-        stepnum += 1;
-        console.log(`TestCase_6: S${stepnum} CheckoutStep1Page: Filled in customer info`);
-
-        await CheckoutStep1Page.clickOnContinue();
-
-        await CheckoutStep2Page.ensureOnPage();
-        stepnum += 2;
-        console.log(`TestCase_6: S${stepnum} CheckoutStep2Page: ensure on page`);    
-       
-        await CartPage.checkNumCartItems(3);
+        let step = 0;
         
+        step++;
+        it(`${padDigits(step,3)} Login: should login user\n`, async ()=>{
+            await LoginPage.open();
+            await LoginPage.login(LoginData.userName, LoginData.password);
+        })
+        step++;
+        it(`${padDigits(step,3)} Inventory Page: should be on Inventory Page`, async ()=> {
+            await InventoryPage.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Add 3 items to cart: should add 1 item to cart`, async ()=> {
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-bolt-t-shirt');
+            await CartPage.checkNumCartItems(1);
+        })
+        step++;
+        it(`${padDigits(step,3)} Add 3 items to cart: should add 1 item to cart`, async ()=> {
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-fleece-jacket');
+            await CartPage.checkNumCartItems(2);
+        })
+        step++;
+        it(`${padDigits(step,3)} Add 3 items to cart: should add 1 item to cart\n`, async ()=> {
+            await CartPage.addItemToCart('#add-to-cart-sauce-labs-onesie');
+            await CartPage.checkNumCartItems(3);
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Click on Cart Icon: click on Cart Icon`, async ()=>{
+            await CartPage.clickOnCartIcon();
+        })
+        step++;
+        it(`${padDigits(step,3)} Cart Page: should be on Cart Page`, async ()=>{
+            await CartPage.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Cart Page: should have 3 items in Cart\n`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Click on Checkout: click on Checkout\n`, async ()=>{
+            await CartPage.clickOnCheckout();
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: should be on Checkout Step1 Page`, async()=>{
+            await CheckoutStep1Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: fill in customer info\n`, async ()=>{
+            await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Click on Continue: click on Continue\n`, async ()=>{
+            await CheckoutStep1Page.clickOnContinue();
+        })
+    
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should be on Checkout Step2 Page`, async ()=>{
+            await CheckoutStep2Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should have 3 items in cart\n`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+    
         // Go back to Cart from CheckoutStep2
-        await CartPage.clickOnCartIcon();
-        stepnum += 2;
-        console.log(`TestCase_6: S${stepnum} Go back to CartPage from CheckoutStep2`);
-        
-        await CartPage.ensureOnPage();
-        await CartPage.checkNumCartItems(3);
-        
-        await CartPage.clickOnCheckout();
+        step++;
+        it(`${padDigits(step,3)} Click on Cart Icon: click on Cart Icon, go back to CartPage from CheckoutStep2\n`, async ()=>{
+            await CartPage.clickOnCartIcon();
+        })
 
-        await CheckoutStep1Page.ensureOnPage();
-        await CartPage.checkNumCartItems(3);
-        await CheckoutStep1Page.fillInCustomerInfo("John", "Duran", "66");
-        await CheckoutStep1Page.clickOnContinue();
+        step++;
+        it(`${padDigits(step,3)} Cart Page: should be on Cart Page`, async ()=>{
+            await CartPage.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Cart Page: should have 3 items in Cart\n`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+    
+        step++;
+        it(`${padDigits(step,3)} Click on Checkout: click on Checkout\n`, async ()=>{
+            await CartPage.clickOnCheckout();
+        })
+    
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: should be on Checkout Step1 Page`, async()=>{
+            await CheckoutStep1Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: should have 3 items in cart`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: fill in customer info\n`, async ()=>{
+            await CheckoutStep1Page.fillInCustomerInfo("Jane", "Doe", "90210");
+        })
 
-        await CheckoutStep2Page.ensureOnPage();
-        
-        await CartPage.checkNumCartItems(3);
-        stepnum += 9;
-        console.log(`TestCase_6: S${stepnum} Walk through CheckoutStep1 to CheckoutStep2`);
+        step++;
+        it(`${padDigits(step,3)} Click on Continue: click on Continue\n`, async ()=>{
+            await CheckoutStep1Page.clickOnContinue();
+        })
+    
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should be on Checkout Step2 Page`, async ()=>{
+            await CheckoutStep2Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should have 3 items in cart\n`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+    
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: click on Cancel2 and go back to InventoryPage\n`, async ()=>{
+            await CheckoutStep2Page.clickOnCancel2();
+        })
 
-        //Go back to inventory page
-        await CheckoutStep2Page.clickOnCancel2();
-        stepnum += 1;
-        console.log(`TestCase_6: S${stepnum} Click on Cancel2 from CheckoutStep2Page to go back to InventoryPage`);
         // Now we're back on Inventory page
         // Do a single file walk through to checkout
-        await InventoryPage.ensureOnPage();
-        await CartPage.clickOnCartIcon();
-        await CartPage.ensureOnPage();
-        await CartPage.clickOnCheckout();
-        await CheckoutStep1Page.ensureOnPage();
-        await CheckoutStep1Page.fillInCustomerInfo("Hello", "World", "900000");
-        await CheckoutStep1Page.clickOnContinue();
-        await CheckoutStep2Page.ensureOnPage();
-        await CartPage.checkNumCartItems(3);
-        await CheckoutStep2Page.clickOnFinish();
-        await CheckoutCompletePage.ensureOnPage();
+        step++;
+        it(`${padDigits(step,3)} Inventory Page: should be on Inventory Page\n`, async ()=> {
+            await InventoryPage.ensureOnPage();
+        })
 
-        await CartPage.checkNumCartItems(0);
-        stepnum += 12;
-        console.log(`TestCase_6: S${stepnum} Did a single file checkout from Inventory Page`);
-        // TODO: Should be able to logout
-        console.log(`TestCase_6: S${stepnum} END`);
+        step++;
+        it(`${padDigits(step,3)} Click on Cart Icon: click on Cart Icon\n`, async ()=>{
+            await CartPage.clickOnCartIcon();
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Cart Page: should be on Cart Page\n`, async ()=>{
+            await CartPage.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Click on Checkout: click on Checkout\n`, async ()=>{
+            await CartPage.clickOnCheckout();
+        })
+     
+        step++;
+        
+        it(`${padDigits(step,3)} Checkout Step1 Page: should be on Checkout Step1 Page`, async()=>{
+            await CheckoutStep1Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: should have 3 items in cart`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step1 Page: fill in customer info\n`, async ()=>{
+            await CheckoutStep1Page.fillInCustomerInfo("Hello", "World", "90000");
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Click on Continue: click on Continue\n`, async ()=>{
+            await CheckoutStep1Page.clickOnContinue();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should be on Checkout Step2 Page`, async ()=>{
+            await CheckoutStep2Page.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Step2 Page: should have 3 items in cart\n`, async ()=>{
+            await CartPage.checkNumCartItems(3);
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Click on Finish: click on Finish\n`, async ()=>{
+            await CheckoutStep2Page.clickOnFinish();
+        })
+
+        step++;
+        it(`${padDigits(step,3)} Checkout Complete Page: should be on Checkout Complete page`, async ()=>{
+            await CheckoutCompletePage.ensureOnPage();
+        })
+        step++;
+        it(`${padDigits(step,3)} Checkout Complete Page: cart should be empty`, async ()=>{
+            await CartPage.checkNumCartItems(0);
+        })
     })
 });
 
