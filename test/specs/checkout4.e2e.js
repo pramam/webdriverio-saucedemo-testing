@@ -4,75 +4,80 @@ const CartPage = require('../pageobjects/cart.page');
 const CheckoutStep1Page = require ('../pageobjects/checkoutstep1.page');
 const LoginData = require('../../data/logindata');
 const allureReporter = require('@wdio/allure-reporter').default;
+const {padDigits} = require('../../utils/myUtils');
 
 describe('UserStory: Checkout: Should error out when customer information is missing', () => {
     allureReporter.addFeature('Checkout');
     // State Machine:
     // X 1 A 2 4 B 6 C <incomplete cust info> <should see error>
-    describe(`Login`, ()=>{
-        it(`should login user`, async ()=>{
-            await LoginPage.open();
-            await LoginPage.login(LoginData.userName, LoginData.password);
-        })
+    let step = 0;
+    step++;
+    it(`${padDigits(step,3)} Login: should login user`, async ()=>{
+        await LoginPage.open();
+        await LoginPage.login(LoginData.userName, LoginData.password);
     })
-    describe(`Inventory Page`, ()=>{
-        it(`should be on Inventory Page`, async ()=>{
-            await InventoryPage.ensureOnPage();
-        })
+
+    step++;
+    it(`${padDigits(step,3)} Inventory Page: should be on Inventory Page`, async ()=>{
+        await InventoryPage.ensureOnPage();
     })
-    describe(`Add 1 item to cart`, ()=>{
-        it(`should add 1 item to cart`, async ()=>{
-            await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
-        })
-        it(`cart should have 1 item`, async ()=>{
-            await CartPage.checkNumCartItems(1);
-        })
+
+    step++;
+    it(`${padDigits(step,3)} Add 1 item to cart: should add 1 item to cart`, async ()=>{
+        await CartPage.addItemToCart('#add-to-cart-sauce-labs-backpack');
     })
-    describe(`Click on Cart Icon`, ()=>{
-        it(`click on Cart Icon`, async ()=>{
-            await CartPage.clickOnCartIcon();
-        })
+    step++;
+    it(`${padDigits(step,3)} Add 1 item to cart: cart should have 1 item`, async ()=>{
+        await CartPage.checkNumCartItems(1);
     })
-    describe(`Cart Page`, ()=>{
-        it(`should be on Cart Page`, async ()=>{
-            await CartPage.ensureOnPage();
-        })
-        it(`should have 1 item in cart`, async ()=>{
-            await CartPage.checkNumCartItems(1);
-        })
+    
+    step++;
+    it(`${padDigits(step,3)} Click on Cart Icon: click on Cart Icon`, async ()=>{
+        await CartPage.clickOnCartIcon();
     })
-    describe(`Click on Checkout`, ()=>{
-        it(`click on Checkout`, async ()=>{
-            await CartPage.clickOnCheckout();
-        })
+    
+    step++;
+    it(`${padDigits(step,3)} Cart Page: should be on Cart Page`, async ()=>{
+        await CartPage.ensureOnPage();
     })
-    describe(`Checkout Step1 Page`, ()=>{
-        it(`should be on Checkout Step1 Page`, async ()=>{
-            await CheckoutStep1Page.ensureOnPage();
-        })
-        it(`should have 1 item in cart`, async ()=>{
-            await CartPage.checkNumCartItems(1);
-        })
+    step++;
+    it(`${padDigits(step,3)} Cart Page: should have 1 item in cart`, async ()=>{
+        await CartPage.checkNumCartItems(1);
     })
-    describe(`Don't fill all customer info`, ()=>{
-        it(`fill in customer info with missing first name`, async ()=>{
-            await CheckoutStep1Page.fillInCustomerInfo("", "Doe", "90210");
-        })
-        it(`validate customer info`, async ()=>{
-            await expect(CheckoutStep1Page.firstName).toHaveValue('');
-            await expect(CheckoutStep1Page.lastName).toHaveValue('Doe');
-            await expect(CheckoutStep1Page.postalCode).toHaveValue('90210');
-        })
+    
+    step++;
+    it(`${padDigits(step,3)} Click on Checkout: click on Checkout`, async ()=>{
+        await CartPage.clickOnCheckout();
     })
-    describe(`Click on Continue`, () => {
-        it(`click on Continue`, async ()=> {
-            await CheckoutStep1Page.clickOnContinue();
-        })
+    
+    step++;
+    it(`${padDigits(step,3)} Checkout Step1 Page: should be on Checkout Step1 Page`, async ()=>{
+        await CheckoutStep1Page.ensureOnPage();
     })
-    describe(`Validate customer sees error`, ()=>{
-        it(`should see error`, async ()=>{
-            await CheckoutStep1Page.validateCustomerSeesError();
-        })
+    step++;
+    it(`${padDigits(step,3)} Checkout Step1 Page: should have 1 item in cart`, async ()=>{
+        await CartPage.checkNumCartItems(1);
+    })
+    
+    step++;
+    it(`${padDigits(step,3)} Don't fill all customer info: fill in customer info with missing first name`, async ()=>{
+        await CheckoutStep1Page.fillInCustomerInfo("", "Doe", "90210");
+    })
+    step++;
+    it(`${padDigits(step,3)} Don't fill all customer info: validate customer info`, async ()=>{
+        await expect(CheckoutStep1Page.firstName).toHaveValue('');
+        await expect(CheckoutStep1Page.lastName).toHaveValue('Doe');
+        await expect(CheckoutStep1Page.postalCode).toHaveValue('90210');
+    })
+    
+    step++;
+    it(`${padDigits(step,3)} Click on Continue: click on Continue`, async ()=> {
+        await CheckoutStep1Page.clickOnContinue();
+    })
+    
+    step++;
+    it(`${padDigits(step,3)} Validate customer sees error: should see error`, async ()=>{
+        await CheckoutStep1Page.validateCustomerSeesError();
     })
 });
 
