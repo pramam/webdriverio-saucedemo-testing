@@ -1,4 +1,4 @@
-# Testing a shopping cart application using a finite state machine
+# Testing a shopping cart application using a Finite State Machine
 
 ## Overview
 
@@ -10,8 +10,8 @@ An eCommerce demo site called [Swag Labs](https://www.saucedemo.com/) is a simpl
 
 The demo application will log you out after 10 minutes. This is part of the design of the site and this functionaility is also tested in the state machine. 
 
-# Finite State Machine
-Play with the application and then head over [here](./images/StateMachineExcaliDraw.png) to see the state machine diagram for this application.
+## Finite State Machine
+Play with the application at [Swag Labs](https://www.saucedemo.com/) and then head over [here](./images/StateMachineExcaliDraw.png) to see the state machine diagram for this application.
 
 This state machine diagram works as a mental model of the application, and walking through the various paths of the state machine can give one reasonable confidence about end-to-end integration testing of the application. However, it must be noted that this state machine is only a ***proxy*** for the state machine used to implement the actual application code and there is room for error and one cannot have 100% confidence that there are no hidden bugs in the said application.
 
