@@ -18,13 +18,17 @@ This state machine diagram works as a mental model of the application, and walki
 That said, having a mental model of a state machine is useful when writing a test plan.
 
 [Checkout Test Cases](./StateDiagramCheckoutTestCases.md)
+
 [Reset and Login Test Cases](./StateDiagramLoginResetTestCases.md)
 
 Here are some screen shots of the test results for the various users.
 
 [standard_user](./result-screenshots/allure-standard_user.png)
+
 [problem_user](./result-screenshots/allure-problem_user.png)
+
 [performance_glitch_user](./result-screenshots/allure-performance_glitch_user.png)
+
 [locked_out_user](./result-screenshots/allure-locked_out_user.png)
 
 Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
