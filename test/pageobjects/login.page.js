@@ -27,7 +27,7 @@ class LoginPage extends Page {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
         await this.btnSubmit.click();
-        console.log(`LoginPage.login, clicked on LOGIN as user ${username}`);
+        // console.log(`LoginPage.login, clicked on LOGIN as user ${username}`);
     }
 
     /**
@@ -40,7 +40,7 @@ class LoginPage extends Page {
     async logout(){
         const elMenuButton = await $('#react-burger-menu-btn')
         await elMenuButton.click();
-        console.log(`LoginPage.logout, clicked on MenuButton`);
+        // console.log(`LoginPage.logout, clicked on MenuButton`);
 
         // Wait for the modal to slide in for display
         await browser.pause(5000);
@@ -49,7 +49,7 @@ class LoginPage extends Page {
         await elLogoutLink.waitForClickable({ timeout: 5000 });
         
         await elLogoutLink.click();
-        console.log(`LoginPage.logout, clicked on logout link`);
+        // console.log(`LoginPage.logout, clicked on logout link`);
     }
 
     async resetAppState(){
@@ -57,22 +57,22 @@ class LoginPage extends Page {
         
         await elMenuButton.click();
 
-        console.log(`LoginPage.resetAppState, clicked on MenuButton`);
+        // console.log(`LoginPage.resetAppState, clicked on MenuButton`);
 
         // Wait for the modal to slide in for display
         await browser.pause(2000);
         // await browser.saveScreenshot('./screenshot/resetAppState.png')
         const elResetLink = await $('#reset_sidebar_link')
         await elResetLink.waitForClickable({ timeout: 7000 });
-        console.log(`LoginPage.resetAppState, waitedForClickable on reset link`);
+        // console.log(`LoginPage.resetAppState, waitedForClickable on reset link`);
         
         await elResetLink.click();
-        console.log(`LoginPage.resetAppState, clicked on reset link`);
+        // console.log(`LoginPage.resetAppState, clicked on reset link`);
 
         const elCloseMenuButton = await $('#react-burger-cross-btn');
  
         await elCloseMenuButton.click();
-        console.log(`LoginPage.resetAppState, clicked on close menu button`);
+        // console.log(`LoginPage.resetAppState, clicked on close menu button`);
     }
     // TODO: Test this method
     async resetAppStateAndLogout(){
