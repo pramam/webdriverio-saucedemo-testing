@@ -11,7 +11,9 @@ An eCommerce demo site called [Swag Labs](https://www.saucedemo.com/) is a simpl
 The demo application will log you out after 10 minutes. This is part of the design of the site and this functionaility is also tested in the state machine. 
 
 ## Finite State Machine
-Play with the application at [Swag Labs](https://www.saucedemo.com/) and then head over [here](./images/StateMachineExcaliDraw.png) to see the state machine diagram for this application.
+Play with the application at [Swag Labs](https://www.saucedemo.com/) and then see the State Machine diagram below. The letters in Red are states. The arrows with the Turquoise numbers are transitions.
+
+![State Machine](./images/StateMachineExcaliDraw.png) 
 
 This state machine diagram works as a mental model of the application, and walking through the various paths of the state machine can give one reasonable confidence about end-to-end integration testing of the application. However, it must be noted that this state machine is only a ***proxy*** for the state machine used to implement the actual application code and there is room for error and one cannot have 100% confidence that there are no hidden bugs in the said application.
 
@@ -23,13 +25,17 @@ That said, having a mental model of a state machine is useful when writing a tes
 
 Here are some screen shots of the test results for the various users.
 
-[standard_user](./result-screenshots/allure-standard_user.png)
+***standard_user:***
+![standard_user](./result-screenshots/allure-standard_user.png)
 
-[problem_user](./result-screenshots/allure-problem_user.png)
+***problem_user:***
+![problem_user](./result-screenshots/allure-problem_user.png)
 
-[performance_glitch_user](./result-screenshots/allure-performance_glitch_user.png)
+***performance_glitch_user:***
+![performance_glitch_user](./result-screenshots/allure-performance_glitch_user.png)
 
-[locked_out_user](./result-screenshots/allure-locked_out_user.png)
+***locked_out_user:***
+![locked_out_user](./result-screenshots/allure-locked_out_user.png)
 
 Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
 
