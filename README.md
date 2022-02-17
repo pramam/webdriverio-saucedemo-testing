@@ -26,20 +26,24 @@ That said, having a mental model of a state machine is useful when writing a tes
 Here are some screen shots of the test results for the various users.
 
 ***standard_user:***
+
 ![standard_user](./result-screenshots/allure-standard_user.png)
 
 ***problem_user:***
+
 ![problem_user](./result-screenshots/allure-problem_user.png)
 
 ***performance_glitch_user:***
+
 ![performance_glitch_user](./result-screenshots/allure-performance_glitch_user.png)
 
 ***locked_out_user:***
+
 ![locked_out_user](./result-screenshots/allure-locked_out_user.png)
 
 Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
 
-The Page Object Model was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](./test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
+The Page Object Model(POM) was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](./test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
 
 ## Existing Files
 
@@ -56,6 +60,6 @@ The Page Object Model was used to write these tests. The classes created in the 
 2. Run `npm install` to install the latest version (requires you have [node.js installed](https://nodejs.org/en/download/))
 3. Run `npx wdio run ./wdio.conf.js` to run all the tests
 4. Run `npx wdio run ./wdio.conf.js --spec checkout1.e2e.js` to run the specified spec file. 
-5. Run `allure generate allure-results --clean && allure open` to generate a report
+5. Run `allure generate allure-results --clean && allure open` to generate a report; `allure generate --clean && allure open` also works as `allure-results` is a default
 6. To clean up results from a prior run `rm -rf allure-results`
 7. The default username/login is in [this file](./data/logindata.js). Change the username in this file to run the automation with a different user account.
