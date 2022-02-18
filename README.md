@@ -8,7 +8,7 @@ An eCommerce demo site called [Swag Labs](https://www.saucedemo.com/) is a simpl
 
 ## Notable with the target test site
 
-The demo application will log you out after 10 minutes. This is part of the design of the site and this functionaility is also tested in the state machine. 
+The demo application will log you out after 10 minutes. This is part of the design of the site and this functionality is also tested in the state machine. 
 
 ## Finite State Machine
 Play with the application at [Swag Labs](https://www.saucedemo.com/) and then see the State Machine diagram below. The letters in Red are states. The arrows with the Turquoise numbers are transitions.
