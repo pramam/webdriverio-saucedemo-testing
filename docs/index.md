@@ -25,6 +25,14 @@ That said, having a mental model of a state machine is useful when writing a tes
 
 [Reset and Login Test Cases](./StateDiagramLoginResetTestCases.md)
 
+## Test Results
+
+Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
+
+The Page Object Model(POM) was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](https://github.com/pramam/webdriverio-saucedemo-testing/tree/develop/test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
+
+### Allure Reports
+
 Here are some screen shots of the test results for the various users.
 
 ***standard_user:***
@@ -43,9 +51,17 @@ Here are some screen shots of the test results for the various users.
 
 ![locked_out_user](./result-screenshots/allure-locked_out_user.png)
 
-Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
+### html-nice-reporter
 
-The Page Object Model(POM) was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](https://github.com/pramam/webdriverio-saucedemo-testing/tree/develop/test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
+Here are some reports you can interact with. This was a different run from the allure reports above.
+
+[standard_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/standard_user/master-report.html)
+
+[problem_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/problem_user/master-report.html)
+
+[performance_glitch_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/performance_glitch_user/master-report.html)
+
+[locked_out_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/locked_out_user/master-report.html)
 
 ## Existing Files
 

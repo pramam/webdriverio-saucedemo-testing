@@ -23,7 +23,13 @@ That said, having a mental model of a state machine is useful when writing a tes
 
 [Reset and Login Test Cases](./docs/StateDiagramLoginResetTestCases.md)
 
-## Allure Reports
+## Test Results
+
+Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
+
+The Page Object Model(POM) was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](/test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
+
+### Allure Reports
 
 Here are some screen shots of a run of the test results for the various users using the _allure_ reporting tool.
 
@@ -43,9 +49,9 @@ Here are some screen shots of a run of the test results for the various users us
 
 ![locked_out_user](./docs/result-screenshots/allure-locked_out_user.png)
 
-## html reporter
+### html-nice-reporter
 
-Here are some reports you can interact with:
+Here are some reports you can interact with. This was a different run from the allure reports above.
 
 [standard_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/standard_user/master-report.html)
 
@@ -55,9 +61,6 @@ Here are some reports you can interact with:
 
 [locked_out_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/locked_out_user/master-report.html)
 
-Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
-
-The Page Object Model(POM) was used to write these tests. The classes created in the POM `throw` errors, which currently shows up as a test defect(instead of product defect) in the allure results. The actual [test cases](/test/specs) are clean, with `await object.method()` and can serve as living documentation for each test.
 
 ## Existing Files
 
