@@ -9,4 +9,4 @@ To test this application, we need to walk through various paths of red letters a
 
 The test cases, as determined by the state diagram, are below the diagram.
 
-![StateMachine for Checkout Application](/images/StateMachineExcaliDrawWithTestCases.png 'State Machine for Checkout Application').
+![StateMachine for Checkout Application](./images/StateMachineExcaliDrawWithTestCases.png 'State Machine for Checkout Application').
