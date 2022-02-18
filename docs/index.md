@@ -6,6 +6,8 @@ We will be using [WebDriverIO](https://webdriver.io/), which is a browser test a
 
 An eCommerce demo site called [Swag Labs](https://www.saucedemo.com/) is a simple shopping cart application with a 2 step checkout process. 
 
+[***Github repo***](https://github.com/pramam/webdriverio-saucedemo-testing)
+
 ## Notable with the target test site
 
 The demo application will log you out after 10 minutes. This is part of the design of the site and this functionaility is also tested in the state machine. 
