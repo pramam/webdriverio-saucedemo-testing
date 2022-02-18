@@ -47,13 +47,13 @@ Here are some screen shots of a run of the test results for the various users us
 
 Here are some reports you can interact with:
 
-[standard_user](./docs/reports/html-reports/standard_user/master-report.html)
+[standard_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/standard_user/master-report.html)
 
-[problem_user](./docs/reports/html-reports/problem_user/master-report.html)
+[problem_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/problem_user/master-report.html)
 
-[performance_glitch_user](./docs/reports/html-reports/performance_glitch_user/master-report.html)
+[performance_glitch_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/performance_glitch_user/master-report.html)
 
-[locked_out_user](./docs/reports/html-reports/locked_out_user/master-report.html)
+[locked_out_user](https://pramam.github.io/webdriverio-saucedemo-testing/reports/html-reports/locked_out_user/master-report.html)
 
 Clicking on the Burger menu -> Logout or Reset Application is a bit flaky in the automated tests, so these tests are showing up as yellow in the above screenshots.
 
