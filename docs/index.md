@@ -89,3 +89,5 @@ Look at [this repo](https://github.com/pramam/webdriverio-saucedemo-testing):
 6. Run `allure generate allure-results --clean && allure open` to generate a report; `allure generate --clean && allure open` also works as `allure-results` is a default
 7. To clean up results from a prior run `rm -rf allure-results` and `rm -rf docs/reports/html-reports`
 8. The default username/password is in `data/logindata.js`. Change the username in this file to run the automation with a different user account. The different account names are listed on the login  page of the Sauce Demo application.
+
+To reach me, please DM me on Twitter at [@pallaviramam](https://twitter.com/pallaviramam)
