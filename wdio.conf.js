@@ -1,3 +1,8 @@
+const {ReportAggregator, HtmlReporter} = require('wdio-html-nice-reporter');
+const LoginData = require('./data/logindata');
+
+let reportAggregator;
+
 exports.config = {
     //
     // ====================
@@ -144,7 +149,22 @@ exports.config = {
         disableWebdriverStepsReporting: true,
         disableWebdriverScreenshotsReporting:false,
         addConsoleLogs: true
-    }]
+    }],
+    ["html-nice", {
+        outputDir: `./docs/reports/html-reports/${LoginData.userName}`,
+        filename: 'report.html',
+        reportTitle: `Sauce Demo Report for ${LoginData.userName} `,
+        linkScreenshots: true,
+        //to show the report in a browser when done
+        showInBrowser: true,
+        collapseTests: false,
+        //to turn on screenshots after every test
+        useOnAfterCommandForScreenshot: false,
+
+        //to initialize the logger
+        // LOG: log4j.getLogger("default")
+    }
+    ]
     ],
 
 
@@ -169,8 +189,19 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        reportAggregator = new ReportAggregator({
+            outputDir: `./docs/reports/html-reports/${LoginData.userName}`,
+            filename: `master-report.html`,
+            reportTitle: `Master Report for ${LoginData.userName}`,
+            // LOG: logger,
+            showInBrowser: true,
+            browserName : capabilities.browserName,
+            collapseTests: true
+          });
+        reportAggregator.clean() ;
+        reportAggregator = reportAggregator;
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -288,8 +319,11 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+        (async () => {
+            await reportAggregator.createReport();
+        })();
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session

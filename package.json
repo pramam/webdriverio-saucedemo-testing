@@ -15,6 +15,7 @@
         "wdio": "wdio run wdio.conf.js"
     },
     "dependencies": {
-        "delay": "^5.0.0"
+        "delay": "^5.0.0",
+        "wdio-html-nice-reporter": "^7.9.1"
     }
 }
