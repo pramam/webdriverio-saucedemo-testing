@@ -82,7 +82,7 @@ Here are some reports you can interact with. This was a different run from the a
 2. Run `npm install` to install the latest version (requires you have [node.js installed](https://nodejs.org/en/download/))
 3. Run `npx wdio run ./wdio.conf.js` to run all the tests. Some tests check if the user is logged out after 10 mins, so expect the test suite to take 10-11mins to complete.
 4. Run `npx wdio run ./wdio.conf.js --spec checkout1.e2e.js` to run the specified spec file. 
-5. Running the tests creates allure reports and html reports, using both reporters. The allure reports are stored in `allure results` and the html reports are stored in `docs/reports/html-reports`. The html master report is at `docs/reports/html-reports/standard_user/master-report.html`. Run `rm -rf allure-results` and `rm -rf docs/reports/html-reports` to get fresh results.
+5. Running the tests creates allure reports and html reports, using both reporters. The allure reports are stored in `allure results` and the html reports are stored in `docs/reports/html-reports`. The html master report for user `standard_user` is at `docs/reports/html-reports/standard_user/master-report.html`. Run `rm -rf allure-results` and `rm -rf docs/reports/html-reports` to get fresh results.
 6. Run `allure generate allure-results --clean && allure open` to generate a report; `allure generate --clean && allure open` also works as `allure-results` is a default
 7. To clean up results from a prior run `rm -rf allure-results` and `rm -rf docs/reports/html-reports`
 8. The default username/login is in [this file](./data/logindata.js). Change the username in this file to run the automation with a different user account.
