@@ -9,7 +9,7 @@ describe('UserStory: Reset Cart State', () => {
     allureReporter.addFeature('Reset');
 
     // State machine info:
-    // X 1 A 2 4 B 6 C 15 17 C 8 B
+    // X 1 A 2 4 B 6 C 17 15 C 8 B
     it("Reset_3: should be able to reset cart state from CheckoutStep1", async ()=>{ 
         await LoginPage.open();
         await LoginPage.login(LoginData.userName, LoginData.password);

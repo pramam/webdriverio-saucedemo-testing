@@ -11,7 +11,7 @@ describe('UserStory: Checkout', () => {
     allureReporter.addFeature('Checkout');
     // State machine info:
     // Testing states 5, 7:
-    // X 1 A 2 2 2 4 B 5 A 3 4 B 6 C 7 B 6 C 9 D 12
+    // X 1 A 2 2 2 4 B 5 A 3 4 B 6 C 7 B 6 C 17 9 D 12
     it(`TestCase_3: Add multiple items to cart, Continue shopping from cart and remove 1 item, Cancel from Checkout1, to successful checkout`, async ()=>{
         // allureReporter.addStep(`Login`);
         await LoginPage.open();

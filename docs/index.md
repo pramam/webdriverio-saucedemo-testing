@@ -22,7 +22,7 @@ This state machine diagram works as a mental model of the application, and walki
 That said, having a mental model of a state machine is useful when writing a test plan.
 
 ## Test Cases
-Here is a snippet of code that walks through a simple checkout. It walks through the path `X 1 A 2 4 B 6 C 9 D 12 E` in the above state machine diagram.
+Here is a snippet of code that walks through a simple checkout. It walks through the path `X 1 A 2 4 B 6 C 17 9 D 12 E` in the above state machine diagram.
 
 ![Simple Checkout](./images/checkout2.e2e.snapshot.png)
 
