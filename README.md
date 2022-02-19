@@ -1,6 +1,6 @@
 # Testing a shopping cart application using a Finite State Machine
 
-> I'm looking for a Front End QE Automation role, so please reach out to me at _pallavi.ramam@gmail.com_ if this is interesting to you!
+> I'm looking for a Front End QE Automation role, so please reach out to me at ***pallavi.ramam@gmail.com*** if this is interesting to you!
 
 ## Overview
 
