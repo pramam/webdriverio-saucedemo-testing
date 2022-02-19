@@ -1,6 +1,6 @@
 # Testing a shopping cart application using a Finite State Machine
 
-> I'm looking for a Front End QA Automation role, so please reach out to me at _pallavi.ramam@gmail.com_ if this is interesting to you!
+> I'm looking for a Front End QE Automation role, so please reach out to me at _pallavi.ramam@gmail.com_ if this is interesting to you!
 
 ## Overview
 
@@ -89,6 +89,6 @@ Here are some reports you can interact with. This was a different run from the a
 7. To clean up results from a prior run `rm -rf allure-results` and `rm -rf docs/reports/html-reports`
 8. The default username/password is in [`data/logindata.js`](./data/logindata.js). Change the username in this file to run the automation with a different user account. The different account names are listed on the login  page of the Sauce Demo application.
 
-> I'm looking for a Front End QA Automation role, so please reach out to me at ***pallavi.ramam@gmail.com*** if this is interesting to you!
+> I'm looking for a Front End QE Automation role, so please reach out to me at ***pallavi.ramam@gmail.com*** if this is interesting to you!
 
 You can also find me on Twitter at [@pallaviramam](https://twitter.com/pallaviramam)
